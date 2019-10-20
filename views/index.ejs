@@ -9,9 +9,74 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+      
+    <title>Removing Markers</title>
+    <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #floating-panel {
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      font-family: 'Roboto', 'sans-serif';
+      line-height: 30px;
+      padding-left: 10px;
+    }
+    </style>
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <div id="map"></div>
+
+    <script type="text/javascript">
+      const locations = [
+        ['Vancouver', 49.2827, -123.1207, 4, "This is Vancouver"],
+        ['New York', 40.7128, -74.0060, 5, "This is New York"],
+        ['Lighthouse Labs', 49.2812333, -123.11499430000003, 3, "This is Lighthouse Labs"],
+        ['Paris', 48.8566, 2.3522, 2, "This is Paris"],
+        ['Dawson Creek', 55.7596, -120.2377, 1, "This is Dawson Creek"]
+      ];
+
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 3.5,
+        center: new google.maps.LatLng(49.2827, -123.1207),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      const infowindow = new google.maps.InfoWindow();
+
+      let marker, i;
+
+      for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+          return function () {
+            infowindow.setContent(`
+            <h1>${locations[i][0]}</h1>
+            <p>${locations[i][4]}</p>`);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
+    </script>
   </body>
 </html>
