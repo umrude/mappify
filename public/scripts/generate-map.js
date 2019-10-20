@@ -11,7 +11,7 @@ function initAutocomplete() {
       lat: 49.2827,
       lng: -123.1207
     },
-    zoom: 13,
+    zoom: 10,
     mapTypeId: 'roadmap'
   });
   // Create the search box and link it to the UI element.
@@ -19,41 +19,40 @@ function initAutocomplete() {
   let searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function () {
+  map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
-  let markers = [];
+
+  //every search object is here, maybe connect to an event handler so only locations that user WANTS saved is added to this array
+  let allPlaces = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
-  searchBox.addListener('places_changed', function () {
+  searchBox.addListener('places_changed', function() {
     let places = searchBox.getPlaces();
 
     //Here we can see the full name of location, images, ect!! might be more useful than geocoding!!!!!!
     console.log("places", places);
 
-    if (places.length == 0) {
+    if (places.length === 0) {
       return;
     }
-    //IF THIS IS REMOVED WE CAN STILL SEE MARKERS FROM PREVIOUS SEARCH QUERIES!!!!!!!
-    // Clear out the old markers.
-    // markers.forEach(function (marker) {
-    //   marker.setMap(null);
-    // });
-    // markers = [];
-    // For each place, get the icon, name and location.
+
     let bounds = new google.maps.LatLngBounds();
+
+    //peep the console here after every search
+    console.log("all Places ", allPlaces, allPlaces.length);
+
+
     places.forEach(function (place) {
+      //saves each search to the array, maybe connect to an event handler so only locations that user WANTS saved is added to this array
+      allPlaces.push(places[0]);
+
+
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
       }
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        map: map,
-        title: place.name,
-        position: place.geometry.location
-      }));
-      console.log("markers", markers[0]);
+
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
@@ -61,6 +60,37 @@ function initAutocomplete() {
         bounds.extend(place.geometry.location);
       }
     });
+
     map.fitBounds(bounds);
+
+    //displays info-window on all locations on click
+    allPlaces.forEach(function(place) {
+
+      let placeAddress = place.formatted_address;
+      let name = place.name;
+
+      let contentString = `
+        <h1>${name}</h1>
+        <p>${placeAddress}</p>
+        <button>Add location</button>`;
+
+      //creates info marker for each location
+      let infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      //creates a marker for each location
+      let marker = new google.maps.Marker({
+        position: place.geometry.location,
+        map: map,
+        title: name
+      });
+
+      //event listener for each marker
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+
+    });
   });
 }
