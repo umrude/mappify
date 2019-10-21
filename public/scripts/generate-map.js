@@ -98,4 +98,3 @@ function displayLocations(locations, map) {
 
 
 
-
