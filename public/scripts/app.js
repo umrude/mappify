@@ -8,3 +8,10 @@
 //     }
 //   });
 // });
+$('.create-map').click(function () {
+  $.ajax({
+    url: '/',
+    method: 'POST'
+  });
+});
+
