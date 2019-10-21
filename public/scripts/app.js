@@ -8,6 +8,13 @@ $(document).ready(function(){
       url: "/maps"
     });
   })
+
+  $('.save-map-button').click(function() {
+    $.ajax({
+      method: 'POST',
+      url: '/maps/:id'
+    })
+  })
   
 // SKELETON EXAMPLE
 

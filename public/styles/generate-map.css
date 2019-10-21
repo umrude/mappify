@@ -6,12 +6,25 @@
       /* Optional: Makes the sample page fill the window. */
       html,
       body {
-        /* margin-top: 3em; */
-        height: 100%;
-        /* width: 90%; */
+        height: 97%;
         margin: 0;
         padding: 0;
       }
+
+      nav {
+        background: rgb(4,30,252);
+        background: linear-gradient(0deg, rgba(4,30,252,0.7187938904494382) 25%, rgba(148,0,238,0.6401422050561798) 100%);
+      }
+
+      .navbar-brand {
+        font-family: 'Bungee', 'sans-serif';
+        font-weight: bold;
+        font-style: italic;
+        color: white;
+        font-size: 33px;
+        padding-right: 20px;
+      }
+
       #description {
         font-family: Roboto;
         font-size: 15px;
@@ -27,6 +40,10 @@
         display: inline;
       }
 
+
+
+      /* PAC CONTROL BUTTONS */
+
       .pac-card {
         margin: 10px 10px 0 0;
         border-radius: 2px 0 0 2px;
@@ -37,32 +54,42 @@
         background-color: #fff;
         font-family: Roboto;
       }
+
       #pac-container {
         padding-bottom: 12px;
         margin-right: 12px;
       }
+
       .pac-controls {
         display: inline-block;
         padding: 5px 11px;
       }
+
       .pac-controls label {
         font-family: Roboto;
         font-size: 13px;
         font-weight: 300;
       }
+
       #pac-input {
-        background-color: #fff;
+        background-color: black;
+        color: white;
         font-family: Roboto;
         font-size: 15px;
         font-weight: 300;
         margin-left: 12px;
-        padding: 0 11px 0 13px;
+        padding: 4px 11px 6px 13px;
         text-overflow: ellipsis;
         width: 400px;
+        margin-top: 11px;
+        opacity: 0.6;
+        transition: opacity 3s, box-shadow 1.5s;
       }
+
       #pac-input:focus {
         border-color: #4d90fe;
       }
+
       #title {
         color: #fff;
         background-color: #4d90fe;
@@ -70,6 +97,13 @@
         font-weight: 500;
         padding: 6px 12px;
       }
+
       #target {
         width: 345px;
+      }
+
+      #pac-input:hover {
+        box-shadow: 5px 5px 5px aqua;
+        opacity: 1;
+        transition: opacity 1s, box-shadow 0.5s;
       }
