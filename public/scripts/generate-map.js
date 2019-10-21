@@ -205,7 +205,6 @@ function initAutocomplete() {
   // more details for that place.
   searchBox.addListener('places_changed', function () {
     let places = searchBox.getPlaces();
-
     //Here we can see the full name of location, images, ect!! might be more useful than geocoding!!!!!!
     console.log("places", places);
 
@@ -247,6 +246,7 @@ function initAutocomplete() {
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
   locations.forEach(function (place) {
+
 
     let placeAddress = place.formatted_address;
     let name = place.name;
