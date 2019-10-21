@@ -9,17 +9,24 @@ $(document).ready(function () {
     });
   })
 
-  // SKELETON EXAMPLE
+  $('.save-map-button').click(function() {
+    $.ajax({
+      method: 'POST',
+      url: '/maps/:id'
+    })
+  })
+  
+// SKELETON EXAMPLE
 
-  // $(() => {
-  //   $.ajax({
-  //     method: "POST",
-  //     url: "/maps"
-  //   }).done((result) => {
-  //     for (user of users) {
-  //       $("<div>").text(user.name).appendTo($("body"));
-  //     }
-  //   });
+// $(() => {
+//   $.ajax({
+//     method: "POST",
+//     url: "/maps"
+//   }).done((result) => {
+//     for (user of users) {
+//       $("<div>").text(user.name).appendTo($("body"));
+//     }
+//   });
 
 });
 
