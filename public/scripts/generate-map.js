@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
 
+
 function initAutocomplete() {
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -59,35 +60,42 @@ function initAutocomplete() {
 
     map.fitBounds(bounds);
 
-    //displays info-window on all locations on click
-    allPlaces.forEach(function(place) {
+    displayLocations(allPlaces, map);
 
-      let placeAddress = place.formatted_address;
-      let name = place.name;
+  });
+}
 
-      let contentString = `
+function displayLocations(locations, map) {
+  //displays info-window on all locations on click
+  locations.forEach(function(place) {
+
+    let placeAddress = place.formatted_address;
+    let name = place.name;
+
+    let contentString = `
         <h1>${name}</h1>
         <p>${placeAddress}</p>
         <button>Add location</button>`;
 
-      //creates info marker for each location
-      let infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
+    //creates info marker for each location
+    let infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
 
-      //creates a marker for each location
-      let marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        title: name
-      });
+    //creates a marker for each location
+    let marker = new google.maps.Marker({
+      position: place.geometry.location,
+      map: map,
+      title: name
+    });
 
-      //event listener for each marker
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
+    //event listener for each marker
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
     });
   });
 }
+
+
 
 
