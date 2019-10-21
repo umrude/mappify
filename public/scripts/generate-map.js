@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
+let allPlaces = [];
+let result = [];
+
 
 
 function initAutocomplete() {
@@ -200,7 +203,7 @@ function initAutocomplete() {
   });
 
   //every search object is here, maybe connect to an event handler so only locations that user WANTS saved is added to this array
-  let allPlaces = [];
+  // let allPlaces = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function () {
@@ -245,20 +248,24 @@ function initAutocomplete() {
 
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
+
   locations.forEach(function (place) {
 
 
     let placeAddress = place.formatted_address;
     let name = place.name;
 
-    let contentString = `
+    let contentString = $(`<div>
         <h1>${name}</h1>
         <p>${placeAddress}</p>
-        <button>Add location</button>`;
+        <button>Remove location</button>
+        </div>`);
+
+
 
     //creates info marker for each location
     let infowindow = new google.maps.InfoWindow({
-      content: contentString
+      content: contentString.get(0)
     });
 
     //creates a marker for each location
@@ -274,8 +281,21 @@ function displayLocations(locations, map) {
     marker.addListener('click', function () {
       infowindow.open(map, marker);
     });
+
+
+    let removeButton = contentString[0].childNodes[5];
+    let locationName = contentString[0].childNodes[1].innerHTML;
+    console.log(locationName);
+
+
+    removeButton.addEventListener('click', function () {
+      for (let [i, place] of allPlaces.entries()) {
+        if (place.name === locationName) {
+          allPlaces.splice(i, 1);
+          console.log("removed items array", allPlaces);
+        }
+      }
+      marker.setMap(null);
+    });
   });
 }
-
-
-
