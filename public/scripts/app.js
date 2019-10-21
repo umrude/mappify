@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
 
 
-  $('.create-map-button').click(function(){
+  $('.create-map-button').click(function () {
     $.ajax({
       method: "POST",
       url: "/maps"
