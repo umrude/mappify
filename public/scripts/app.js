@@ -1,17 +1,27 @@
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for (user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });
-// });
-$('.create-map').click(function () {
-  $.ajax({
-    url: '/',
-    method: 'POST'
-  });
+$(document).ready(function () {
+
+
+
+  $('.create-map-button').click(function () {
+    $.ajax({
+      method: "POST",
+      url: "/maps"
+    });
+  })
+
+  // SKELETON EXAMPLE
+
+  // $(() => {
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/maps"
+  //   }).done((result) => {
+  //     for (user of users) {
+  //       $("<div>").text(user.name).appendTo($("body"));
+  //     }
+  //   });
+
 });
+
+
 
