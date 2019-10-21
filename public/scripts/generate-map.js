@@ -256,26 +256,6 @@ function displayLocations(locations, map) {
         <p>${placeAddress}</p>
         <button>Add location</button>`;
 
-<<<<<<< HEAD
-      //creates info marker for each location
-      let infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-
-      //creates a marker for each location
-      let marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        title: name,
-        icon: 'https://i.ibb.co/qYvvDXn/red-marker.png',
-        animation: google.maps.Animation.BOUNCE,
-      });
-
-      //event listener for each marker
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
-=======
     //creates info marker for each location
     let infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -291,7 +271,6 @@ function displayLocations(locations, map) {
     //event listener for each marker
     marker.addListener('click', function () {
       infowindow.open(map, marker);
->>>>>>> 207cca82c8eeed011889ffab36b26d3c4a6002e0
     });
   });
 }
