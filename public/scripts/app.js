@@ -14,6 +14,7 @@ $(document).ready(function () {
       method: 'POST',
       url: '/maps/:id'
     })
+    .then()
   })
   
 // SKELETON EXAMPLE

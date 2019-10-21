@@ -23,6 +23,7 @@ module.exports = (db) => {
     .catch(err => console.log(err))
   })
 
+  
 
 
 // SKELETON EXAMPLE
@@ -41,6 +42,6 @@ module.exports = (db) => {
   //         .json({ error: err.message });
   //     });
   // });
-  
+
   return router;
 };
