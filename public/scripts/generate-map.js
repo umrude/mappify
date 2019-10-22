@@ -266,7 +266,7 @@ function displayLocations(locations, map) {
     // console.log('Place Address:', placeAddress);
     let name = place.name;
 
-    let contentString = $(`<div class="col-md-4 text-center">
+    let contentString = $(`<div class="text-center">
       <h1 class='info-title'>${name}</h1>
       <p class='info-address'>${placeAddress}</p>
       <button type="button" class="btn btn-outline-danger btn-sm">Remove Location</button>
