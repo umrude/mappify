@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
 let allPlaces = [];
-let result = [];
+// let result = [];
 
 
 
@@ -287,7 +287,7 @@ function displayLocations(locations, map) {
     let locationName = contentString[0].childNodes[1].innerHTML;
     console.log(locationName);
 
-
+    // removes locations from list on the click of the 'remove' button
     removeButton.addEventListener('click', function () {
       for (let [i, place] of allPlaces.entries()) {
         if (place.name === locationName) {
