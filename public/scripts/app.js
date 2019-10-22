@@ -10,12 +10,12 @@ $(document).ready(function () {
     });
   });
 
-  $('.save-map-button').click(function () {
-    $.ajax({
-      method: 'POST',
-      url: '/maps/:id'
-    });
-  });
+  // $('.save').click(function () {
+  //   // $.ajax({
+  //   //   method: 'POST',
+  //   //   url: '/maps/:id'
+  //   // });
+  // });
 
   // $('.add-location').click(function () {
   //   let locationsArray = []

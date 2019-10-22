@@ -15,6 +15,8 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
+INSERT INTO users (name, email, password) VALUES ('Jackson', 'jackson@stark.ca', 'password');
+
 CREATE TABLE maps (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -26,7 +28,7 @@ CREATE TABLE maps (
 CREATE TABLE markers (
   id SERIAL PRIMARY KEY NOT NULL,
   map_id INTEGER REFERENCES maps(id),
-  data jsonb -- (name, address, lat, long)
+  address TEXT
 );
 
 CREATE TABLE contributions (

@@ -2,6 +2,184 @@
 /* eslint-disable func-style */
 let allPlaces = [];
 
+let stylesArray =  [
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#242f3e"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#746855"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#242f3e"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#d59563"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#d59563"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#263c3f"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#6b9a76"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#38414e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#212a37"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9ca5b3"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#746855"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#1f2835"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#f3d19c"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#2f3948"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#d59563"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#17263c"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#515c6d"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#17263c"
+      }
+    ]
+  }
+]
 
 
 function initAutocomplete() {
@@ -12,185 +190,8 @@ function initAutocomplete() {
     },
     zoom: 10,
     // mapTypeId: 'roadmap',
-    styles:
-      [
-        {
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#242f3e"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#746855"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "color": "#242f3e"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.locality",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#d59563"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#d59563"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.business",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#263c3f"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#6b9a76"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#38414e"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry.stroke",
-          "stylers": [
-            {
-              "color": "#212a37"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9ca5b3"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#746855"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry.stroke",
-          "stylers": [
-            {
-              "color": "#1f2835"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#f3d19c"
-            }
-          ]
-        },
-        {
-          "featureType": "transit",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#2f3948"
-            }
-          ]
-        },
-        {
-          "featureType": "transit.station",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#d59563"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#17263c"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#515c6d"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "color": "#17263c"
-            }
-          ]
-        }
-      ]
+    styles: stylesArray
+     
   });
   // Create the search box and link it to the UI element.
   let input = document.getElementById('pac-input');
@@ -262,6 +263,7 @@ function displayLocations(locations, map) {
 
 
     let placeAddress = place.formatted_address;
+    // console.log('Place Address:', placeAddress);
     let name = place.name;
 
     let contentString = $(`<div>
@@ -299,10 +301,42 @@ function displayLocations(locations, map) {
       for (let [i, place] of allPlaces.entries()) {
         if (place.name === locationName) {
           allPlaces.splice(i, 1);
-          console.log("removed items array", allPlaces);
+          // console.log("removed items array", allPlaces);
         }
       }
       marker.setMap(null);
     });
   });
 }
+
+
+
+// JACKSON'S EDITS BELOW
+
+function findAddress() {
+  let markersAddresses = [];
+  for (const address of allPlaces) {
+    markersAddresses.push(address.formatted_address);
+    console.log('Adresses For Database: ', markersAddresses);
+  }
+  return markersAddresses;
+}
+
+
+$(document).ready(function () {
+
+$('.save').click(function () {
+  const address = findAddress();
+  console.log('BODY DATA: ', address);
+  $.ajax({
+    method: 'POST',
+    url: '/markers',
+    data: { address }
+  })
+  .then(res => {
+    console.log('response', res)
+  })
+  .catch(err => console.error(err))
+});
+
+});
