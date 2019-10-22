@@ -216,7 +216,7 @@ function initAutocomplete() {
     let bounds = new google.maps.LatLngBounds();
 
     //peep the console here after every search
-    // console.log("all Places ", allPlaces, allPlaces.length);
+    console.log("all Places ", allPlaces, allPlaces.length);
 
     places.forEach(function (place) {
 
@@ -266,10 +266,10 @@ function displayLocations(locations, map) {
     // console.log('Place Address:', placeAddress);
     let name = place.name;
 
-    let contentString = $(`<div>
-      <h1>${name}</h1>
-      <p>${placeAddress}</p>
-      <button>Remove location</button>
+    let contentString = $(`<div class="text-center">
+      <h1 class='info-title'>${name}</h1>
+      <p class='info-address'>${placeAddress}</p>
+      <button type="button" class="btn btn-outline-danger btn-sm">Remove Location</button>
       </div>`);
 
     //creates info marker for each location
@@ -301,7 +301,7 @@ function displayLocations(locations, map) {
       for (let [i, place] of allPlaces.entries()) {
         if (place.name === locationName) {
           allPlaces.splice(i, 1);
-          // console.log("removed items array", allPlaces);
+          console.log("removed items array", allPlaces);
         }
       }
       marker.setMap(null);
