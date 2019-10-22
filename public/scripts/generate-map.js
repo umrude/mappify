@@ -3,187 +3,187 @@
 let allPlaces = [];
 let storedPlaceIds = [];
 
-let stylesArray =  [
+let stylesArray = [
   {
-    "elementType": "geometry",
-    "stylers": [
+    elementType: "geometry",
+    stylers: [
       {
-        "color": "#242f3e"
+        color: "#242f3e"
       }
     ]
   },
   {
-    "elementType": "labels.text.fill",
-    "stylers": [
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#746855"
+        color: "#746855"
       }
     ]
   },
   {
-    "elementType": "labels.text.stroke",
-    "stylers": [
+    elementType: "labels.text.stroke",
+    stylers: [
       {
-        "color": "#242f3e"
+        color: "#242f3e"
       }
     ]
   },
   {
-    "featureType": "administrative.locality",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: "administrative.locality",
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#d59563"
+        color: "#d59563"
       }
     ]
   },
   {
-    "featureType": "poi",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: "poi",
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#d59563"
+        color: "#d59563"
       }
     ]
   },
   {
-    "featureType": "poi.business",
-    "stylers": [
+    featureType: "poi.business",
+    stylers: [
       {
-        "visibility": "off"
+        visibility: "off"
       }
     ]
   },
   {
-    "featureType": "poi.park",
-    "elementType": "geometry",
-    "stylers": [
+    featureType: "poi.park",
+    elementType: "geometry",
+    stylers: [
       {
-        "color": "#263c3f"
+        color: "#263c3f"
       }
     ]
   },
   {
-    "featureType": "poi.park",
-    "elementType": "labels.text",
-    "stylers": [
+    featureType: "poi.park",
+    elementType: "labels.text",
+    stylers: [
       {
-        "visibility": "off"
+        visibility: "off"
       }
     ]
   },
   {
-    "featureType": "poi.park",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: "poi.park",
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#6b9a76"
+        color: "#6b9a76"
       }
     ]
   },
   {
-    "featureType": "road",
-    "elementType": "geometry",
-    "stylers": [
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [
       {
-        "color": "#38414e"
+        color: "#38414e"
       }
     ]
   },
   {
-    "featureType": "road",
-    "elementType": "geometry.stroke",
-    "stylers": [
+    featureType: "road",
+    elementType: "geometry.stroke",
+    stylers: [
       {
-        "color": "#212a37"
+        color: "#212a37"
       }
     ]
   },
   {
-    "featureType": "road",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: "road",
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#9ca5b3"
+        color: "#9ca5b3"
       }
     ]
   },
   {
-    "featureType": "road.highway",
-    "elementType": "geometry",
-    "stylers": [
+    featureType: "road.highway",
+    elementType: "geometry",
+    stylers: [
       {
-        "color": "#746855"
+        color: "#746855"
       }
     ]
   },
   {
-    "featureType": "road.highway",
-    "elementType": "geometry.stroke",
-    "stylers": [
+    featureType: "road.highway",
+    elementType: "geometry.stroke",
+    stylers: [
       {
-        "color": "#1f2835"
+        color: "#1f2835"
       }
     ]
   },
   {
-    "featureType": "road.highway",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: "road.highway",
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#f3d19c"
+        color: "#f3d19c"
       }
     ]
   },
   {
-    "featureType": "transit",
-    "elementType": "geometry",
-    "stylers": [
+    featureType: "transit",
+    elementType: "geometry",
+    stylers: [
       {
-        "color": "#2f3948"
+        color: "#2f3948"
       }
     ]
   },
   {
-    "featureType": "transit.station",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: "transit.station",
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#d59563"
+        color: "#d59563"
       }
     ]
   },
   {
-    "featureType": "water",
-    "elementType": "geometry",
-    "stylers": [
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [
       {
-        "color": "#17263c"
+        color: "#17263c"
       }
     ]
   },
   {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: "water",
+    elementType: "labels.text.fill",
+    stylers: [
       {
-        "color": "#515c6d"
+        color: "#515c6d"
       }
     ]
   },
   {
-    "featureType": "water",
-    "elementType": "labels.text.stroke",
-    "stylers": [
+    featureType: "water",
+    elementType: "labels.text.stroke",
+    stylers: [
       {
-        "color": "#17263c"
+        color: "#17263c"
       }
     ]
   }
 ];
 
 function initMap(data) {
-  let map = new google.maps.Map(document.getElementById('map'), {
+  let map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 49.2827,
       lng: -123.1207
@@ -194,26 +194,23 @@ function initMap(data) {
   });
   initAutocomplete(map);
   locationsFromDatabase(["ChIJVVVFhnlxhlQRVqDISA_7Lc8", "ChIJQ9pJmH5xhlQRe_nvreYL37k"], map);
-
-
 }
 
 function initAutocomplete(map) {
-
   // Create the search box and link it to the UI element.
-  let input = document.getElementById('pac-input');
+  let input = document.getElementById("pac-input");
   let searchBox = new google.maps.places.SearchBox(input);
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
+  map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
 
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
-  searchBox.addListener('places_changed', function() {
+  searchBox.addListener("places_changed", function() {
     let places = searchBox.getPlaces();
 
     if (places.length === 0) {
@@ -223,7 +220,6 @@ function initAutocomplete(map) {
     let bounds = new google.maps.LatLngBounds();
 
     places.forEach(function(place) {
-
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
@@ -236,7 +232,6 @@ function initAutocomplete(map) {
       }
       map.fitBounds(bounds);
       console.log(allPlaces);
-
     });
     if (allPlaces.length === 0) {
       allPlaces.push(places[0]);
@@ -253,7 +248,14 @@ function checkLocations(allPlace, currentCheck) {
   let result = false;
   allPlace.forEach(function(place) {
     if (place.place_id === currentCheck[0].place_id) {
-      console.log("in array", place.name, place.place_id, "input", currentCheck[0].name, currentCheck[0].place_id);
+      console.log(
+        "in array",
+        place.name,
+        place.place_id,
+        "input",
+        currentCheck[0].name,
+        currentCheck[0].place_id
+      );
       result = true;
     }
   });
@@ -263,9 +265,7 @@ function checkLocations(allPlace, currentCheck) {
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
   locations.forEach(function(place) {
-
     let placeAddress = place.formatted_address;
-
 
     // console.log('Place Address:', placeAddress);
     let name = place.name;
@@ -286,22 +286,20 @@ function displayLocations(locations, map) {
       position: place.geometry.location,
       map: map,
       title: name,
-      icon: 'https://i.ibb.co/qYvvDXn/red-marker.png',
-      animation: google.maps.Animation.BOUNCE,
+      icon: "https://i.ibb.co/qYvvDXn/red-marker.png",
+      animation: google.maps.Animation.BOUNCE
     });
 
     //event listener for each marker
-    marker.addListener('click', function() {
+    marker.addListener("click", function() {
       infowindow.open(map, marker);
     });
-
 
     let removeButton = contentString[0].childNodes[5];
     let locationName = contentString[0].childNodes[1].innerHTML;
     // console.log(locationName);
 
-
-    removeButton.addEventListener('click', function() {
+    removeButton.addEventListener("click", function() {
       for (let [i, place] of allPlaces.entries()) {
         if (place.name === locationName) {
           allPlaces.splice(i, 1);
@@ -315,24 +313,19 @@ function displayLocations(locations, map) {
 
 function locationsFromDatabase(data, map) {
   let service = new google.maps.places.PlacesService(map);
-  data.forEach(function (id) {
+  data.forEach(function(id) {
     let request = {
-      placeId: id,
+      placeId: id
     };
 
-    service.getDetails(request, function (place, status) {
+    service.getDetails(request, function(place, status) {
       allPlaces.push(place);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     });
   });
 }
 
-
 console.log(allPlaces);
-
-
-
-
 
 // JACKSON'S EDITS BELOW
 
@@ -340,47 +333,41 @@ function findPlaceId() {
   let markersPlaceIds = [];
   for (const place of allPlaces) {
     markersPlaceIds.push(place.place_id);
-    console.log('Place IDs For Database: ', markersPlaceIds);
+    console.log("Place IDs For Database: ", markersPlaceIds);
   }
   return markersPlaceIds;
 }
 
+$(document).ready(function() {
+  // SAVE... MAP'S MARKERS TO DATABASE
+  $(".save").click(function() {
+    const placeIds = findPlaceId();
+    console.log("BODY DATA: ", placeIds);
+    $.ajax({
+      method: "POST",
+      url: "/markers",
+      data: { placeIds }
+    })
+      .then(res => {
+        console.log("POST:  NEW MARKERS --> Success! ✅", res);
+      })
+      .catch(err => console.error(err));
+  });
 
-$(document).ready(function () {
+  // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
+  $(".my-maps").click(function() {
+    $.ajax({
+      method: "GET",
+      url: "/maps/1"
+    })
+      .then(placeIds => {
+        console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
 
-// SAVE... MAP'S MARKERS TO DATABASE
-$('.save').click(function () {
-  const placeIds = findPlaceId();
-  console.log('BODY DATA: ', placeIds);
-  $.ajax({
-    method: 'POST',
-    url: '/markers',
-    data: { placeIds }
-  })
-  .then(res => {
-    console.log('POST:  NEW MARKERS --> Success! ✅', res)
-  })
-  .catch(err => console.error(err))
-});
-
-
-
-// GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
-$('.my-maps').click(function () {
-  $.ajax({
-    method: 'GET',
-    url: '/maps/1',
-  })
-  .then(placeIds => {
-    console.log('GET: PLACE IDs --> Success! ✅ \n\n', placeIds)
-    
-    let placeIdArray = []
-    for (const item of placeIds) {
-      placeIdArray.push(item.place_id);
-    }
-    storedPlaceIds = placeIdArray;
-  })
-  .catch(err => console.error(err))
-});
-
+        for (const item of placeIds) {
+          storedPlaceIds.push(item.place_id);
+        }
+        console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
+      })
+      .catch(err => console.error(err));
+  });
 });
