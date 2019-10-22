@@ -378,7 +378,7 @@ $('.my-maps').click(function () {
     for (const item of placeIds) {
       placeIdArray.push(item.place_id);
     }
-    console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', placeIdArray)
+    storedPlaceIds = placeIdArray;
   })
   .catch(err => console.error(err))
 });
