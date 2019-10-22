@@ -279,7 +279,7 @@ function displayLocations(locations, map) {
 
     //creates a marker for each location
     let marker = new google.maps.Marker({
-      position: placeAddress,
+      position: place.geometry.location,
       map: map,
       title: name,
       icon: 'https://i.ibb.co/qYvvDXn/red-marker.png',
