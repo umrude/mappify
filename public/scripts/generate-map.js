@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
+let map;
 let allPlaces = [];
 let storedPlaceIds = [];
 
@@ -182,8 +183,8 @@ let stylesArray = [
   }
 ];
 
-function initMap() {
-  let map = new google.maps.Map(document.getElementById("map"), {
+function initMap(data) {
+  map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 49.2827,
       lng: -123.1207
@@ -369,6 +370,7 @@ $(document).ready(function() {
           storedPlaceIds.push(item.place_id);
         }
         console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
+        locationsFromDatabase(storedPlaceIds, map);
       })
       .catch(err => console.error(err));
   });
