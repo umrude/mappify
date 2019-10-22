@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
 
@@ -7,27 +8,31 @@ $(document).ready(function () {
       method: "POST",
       url: "/maps"
     });
-  })
+  });
 
-  $('.save-map-button').click(function() {
-    $.ajax({
-      method: 'POST',
-      url: '/maps/:id'
-    })
-    .then()
-  })
-  
-// SKELETON EXAMPLE
+  // $('.save').click(function () {
+  //   // $.ajax({
+  //   //   method: 'POST',
+  //   //   url: '/maps/:id'
+  //   // });
+  // });
 
-// $(() => {
-//   $.ajax({
-//     method: "POST",
-//     url: "/maps"
-//   }).done((result) => {
-//     for (user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });
+  // $('.add-location').click(function () {
+  //   let locationsArray = []
+  //   locationsArray.
+  // });
+
+  // SKELETON EXAMPLE
+
+  // $(() => {
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/maps"
+  //   }).done((result) => {
+  //     for (user of users) {
+  //       $("<div>").text(user.name).appendTo($("body"));
+  //     }
+  //   });
 
 });
 

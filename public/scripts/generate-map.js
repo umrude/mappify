@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
+let allPlaces = [];
+let result = [];
 
-// require('./map-style.js')
-
-const styleArray = [
+let stylesArray =  [
   {
     "elementType": "geometry",
     "stylers": [
@@ -182,6 +182,7 @@ const styleArray = [
   }
 ]
 
+
 function initAutocomplete() {
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -190,27 +191,27 @@ function initAutocomplete() {
     },
     zoom: 10,
     // mapTypeId: 'roadmap',
-    styles: styleArray
-
+    styles: stylesArray
+     
   });
   // Create the search box and link it to the UI element.
   let input = document.getElementById('pac-input');
   let searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
+  map.addListener('bounds_changed', function () {
     searchBox.setBounds(map.getBounds());
   });
 
   //every search object is here, maybe connect to an event handler so only locations that user WANTS saved is added to this array
-  let allPlaces = [];
+  // let allPlaces = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
-  searchBox.addListener('places_changed', function() {
+  searchBox.addListener('places_changed', function () {
     let places = searchBox.getPlaces();
 
     //Here we can see the full name of location, images, ect!! might be more useful than geocoding!!!!!!
-    console.log("places", places);
+    // console.log("places", places);
 
     if (places.length === 0) {
       return;
@@ -219,10 +220,10 @@ function initAutocomplete() {
     let bounds = new google.maps.LatLngBounds();
 
     //peep the console here after every search
-    console.log("all Places ", allPlaces, allPlaces.length);
+    // console.log("all Places ", allPlaces, allPlaces.length);
 
 
-    places.forEach(function(place) {
+    places.forEach(function (place) {
       //saves each search to the array, maybe connect to an event handler so only locations that user WANTS saved is added to this array
       allPlaces.push(places[0]);
 
@@ -247,41 +248,90 @@ function initAutocomplete() {
   });
 }
 
+
+// MINE
+
+function findAddress() {
+  let markersAddresses = [];
+  for (const address of allPlaces) {
+    markersAddresses.push(address.formatted_address);
+    console.log('Adresses For Database: ', markersAddresses);
+  }
+  return markersAddresses;
+}
+
+
+$(document).ready(function () {
+
+$('.save').click(function () {
+  const address = findAddress();
+  console.log('BODY DATA: ', address);
+  $.ajax({
+    method: 'POST',
+    url: '/markers',
+    data: { address }
+  })
+  .then(res => {
+    console.log('response', res)
+  })
+  .catch(err => console.error(err))
+});
+
+});
+
+// MINE
+
+
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
-  locations.forEach(function(place) {
+
+  locations.forEach(function (place) {
 
     let placeAddress = place.formatted_address;
+    // console.log('Place Address:', placeAddress);
     let name = place.name;
 
-    let contentString = `
+    let contentString = $(`<div>
         <h1>${name}</h1>
         <p>${placeAddress}</p>
-        <button>Add location</button>`;
+        <button>Remove location</button>
+        </div>`);
 
-      //creates info marker for each location
-      let infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
 
-      //creates a marker for each location
-      let marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        title: name,
-        icon: 'https://i.ibb.co/qYvvDXn/red-marker.png',
-        animation: google.maps.Animation.BOUNCE,
-      });
 
-      //event listener for each marker
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
+    //creates info marker for each location
+    let infowindow = new google.maps.InfoWindow({
+      content: contentString.get(0)
     });
-  }
 
-  function locations () {
-    
-  }
+    //creates a marker for each location
+    let marker = new google.maps.Marker({
+      position: place.geometry.location,
+      map: map,
+      title: name,
+      icon: 'https://i.ibb.co/qYvvDXn/red-marker.png',
+      animation: google.maps.Animation.BOUNCE,
+    });
+
+    //event listener for each marker
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
 
 
+    let removeButton = contentString[0].childNodes[5];
+    let locationName = contentString[0].childNodes[1].innerHTML;
+    // console.log(locationName);
+
+
+    removeButton.addEventListener('click', function () {
+      for (let [i, place] of allPlaces.entries()) {
+        if (place.name === locationName) {
+          allPlaces.splice(i, 1);
+          // console.log("removed items array", allPlaces);
+        }
+      }
+      marker.setMap(null);
+    });
+  });
+}
