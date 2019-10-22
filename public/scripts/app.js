@@ -10,18 +10,12 @@ $(document).ready(function () {
     });
   });
 
-  // $('.save').click(function () {
-  //   // $.ajax({
-  //   //   method: 'POST',
-  //   //   url: '/maps/:id'
-  //   // });
-  // });
 
-  // $('.add-location').click(function () {
-  //   let locationsArray = []
-  //   locationsArray.
-  // });
+  $('.my-map-click').click(function () {
+    $('.list-my-maps').toggleClass('visible').toggleClass('slide')
+    $('.to-grey').toggleClass('grey-screen');
 
+  });
   // SKELETON EXAMPLE
 
   // $(() => {
