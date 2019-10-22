@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
 let allPlaces = [];
-
 let stylesArray =  [
   {
     "elementType": "geometry",
@@ -179,10 +178,9 @@ let stylesArray =  [
       }
     ]
   }
-]
+];
 
-
-function initAutocomplete() {
+function initMap(data) {
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {
       lat: 49.2827,
@@ -191,19 +189,26 @@ function initAutocomplete() {
     zoom: 10,
     // mapTypeId: 'roadmap',
     styles: stylesArray
-     
   });
+  initAutocomplete(map);
+  locationsFromDatabase(["ChIJVVVFhnlxhlQRVqDISA_7Lc8", "ChIJQ9pJmH5xhlQRe_nvreYL37k"], map);
+
+
+}
+
+function initAutocomplete(map) {
+
   // Create the search box and link it to the UI element.
   let input = document.getElementById('pac-input');
   let searchBox = new google.maps.places.SearchBox(input);
+
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
 
-  //every search object is here, maybe connect to an event handler so only locations that user WANTS saved is added to this array
-  // let allPlaces = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function() {
@@ -214,9 +219,6 @@ function initAutocomplete() {
     }
 
     let bounds = new google.maps.LatLngBounds();
-
-    //peep the console here after every search
-    // console.log("all Places ", allPlaces, allPlaces.length);
 
     places.forEach(function(place) {
 
@@ -241,7 +243,6 @@ function initAutocomplete() {
       allPlaces.push(places[0]);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     }
-
   });
 }
 
@@ -258,11 +259,11 @@ function checkLocations(allPlace, currentCheck) {
 
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
-
   locations.forEach(function(place) {
 
-
     let placeAddress = place.formatted_address;
+
+
     // console.log('Place Address:', placeAddress);
     let name = place.name;
 
@@ -309,7 +310,22 @@ function displayLocations(locations, map) {
   });
 }
 
+function locationsFromDatabase(data, map) {
+  let service = new google.maps.places.PlacesService(map);
+  data.forEach(function (id) {
+    let request = {
+      placeId: id,
+    };
 
+    service.getDetails(request, function (place, status) {
+      allPlaces.push(place);
+      displayLocations([allPlaces[allPlaces.length - 1]], map);
+    });
+  });
+}
+
+
+console.log(allPlaces);
 
 // JACKSON'S EDITS BELOW
 
@@ -322,21 +338,21 @@ function findAddress() {
   return markersAddresses;
 }
 
+$(document).ready(function() {
 
-$(document).ready(function () {
+  $('.save').click(function() {
+    const address = findAddress();
+    console.log('BODY DATA: ', address);
+    $.ajax({
+      method: 'POST',
+      url: '/markers',
+      data: { address }
+    })
+      .then(res => {
+        console.log('response', res);
+      })
+      .catch(err => console.error(err));
+  });
 
-$('.save').click(function () {
-  const address = findAddress();
-  console.log('BODY DATA: ', address);
-  $.ajax({
-    method: 'POST',
-    url: '/markers',
-    data: { address }
-  })
-  .then(res => {
-    console.log('response', res)
-  })
-  .catch(err => console.error(err))
-});
 
 });
