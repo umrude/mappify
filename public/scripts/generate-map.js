@@ -2,7 +2,7 @@
 /* eslint-disable func-style */
 let allPlaces = [];
 
-let stylesArray =  [
+let stylesArray = [
   {
     "elementType": "geometry",
     "stylers": [
@@ -191,7 +191,7 @@ function initAutocomplete() {
     zoom: 10,
     // mapTypeId: 'roadmap',
     styles: stylesArray
-     
+
   });
   // Create the search box and link it to the UI element.
   let input = document.getElementById('pac-input');
@@ -325,18 +325,18 @@ function findAddress() {
 
 $(document).ready(function () {
 
-$('.save').click(function () {
-  const address = findAddress();
-  console.log('BODY DATA: ', address);
-  $.ajax({
-    method: 'POST',
-    url: '/markers',
-    data: { address }
-  })
-  .then(res => {
-    console.log('response', res)
-  })
-  .catch(err => console.error(err))
-});
+  $('.save').click(function () {
+    const address = findAddress();
+    console.log('BODY DATA: ', address);
+    $.ajax({
+      method: 'POST',
+      url: '/markers',
+      data: { address }
+    })
+      .then(res => {
+        console.log('response', res)
+      })
+      .catch(err => console.error(err))
+  });
 
 });
