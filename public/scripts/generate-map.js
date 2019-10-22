@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
 let allPlaces = [];
+let storedPlaceIds = [];
 
 let stylesArray =  [
   {
@@ -182,6 +183,7 @@ let stylesArray =  [
 ]
 
 
+
 function initAutocomplete() {
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -313,28 +315,49 @@ function displayLocations(locations, map) {
 
 // JACKSON'S EDITS BELOW
 
-function findAddress() {
-  let markersAddresses = [];
-  for (const address of allPlaces) {
-    markersAddresses.push(address.formatted_address);
-    console.log('Adresses For Database: ', markersAddresses);
+function findPlaceId() {
+  let markersPlaceIds = [];
+  for (const place of allPlaces) {
+    markersPlaceIds.push(place.place_id);
+    console.log('Place IDs For Database: ', markersPlaceIds);
   }
-  return markersAddresses;
+  return markersPlaceIds;
 }
 
 
 $(document).ready(function () {
 
+// SAVE... MAP'S MARKERS TO DATABASE
 $('.save').click(function () {
-  const address = findAddress();
-  console.log('BODY DATA: ', address);
+  const placeIds = findPlaceId();
+  console.log('BODY DATA: ', placeIds);
   $.ajax({
     method: 'POST',
     url: '/markers',
-    data: { address }
+    data: { placeIds }
   })
   .then(res => {
-    console.log('response', res)
+    console.log('POST:  NEW MARKERS --> Success! ✅', res)
+  })
+  .catch(err => console.error(err))
+});
+
+
+
+// GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
+$('.my-maps').click(function () {
+  $.ajax({
+    method: 'GET',
+    url: '/maps/1',
+  })
+  .then(placeIds => {
+    console.log('GET: PLACE IDs --> Success! ✅ \n\n', placeIds)
+    
+    let placeIdArray = []
+    for (const item of placeIds) {
+      placeIdArray.push(item.place_id);
+    }
+    console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', placeIdArray)
   })
   .catch(err => console.error(err))
 });

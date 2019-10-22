@@ -3,16 +3,16 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.post('/', (req, res) => {
-    const addresses = req.body.address
+    const placeIds = req.body.placeIds
     let values = ``
     
-    for (const item of addresses) {
-      values += `(1,'${item}')${addresses.indexOf(item) === addresses.length - 1 ? ' ' : ', '}`
+    for (const item of placeIds) {
+      values += `(1,'${item}')${placeIds.indexOf(item) === placeIds.length - 1 ? ' ' : ', '}`
     }
     console.log('values: ', values);
 
     let query = `
-      INSERT INTO markers (map_id, address)
+      INSERT INTO markers (map_id, place_id)
       VALUES ${values}
       RETURNING*;
     `;

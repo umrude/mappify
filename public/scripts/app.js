@@ -10,18 +10,6 @@ $(document).ready(function () {
     });
   });
 
-  // $('.save').click(function () {
-  //   // $.ajax({
-  //   //   method: 'POST',
-  //   //   url: '/maps/:id'
-  //   // });
-  // });
-
-  // $('.add-location').click(function () {
-  //   let locationsArray = []
-  //   locationsArray.
-  // });
-
   // SKELETON EXAMPLE
 
   // $(() => {
