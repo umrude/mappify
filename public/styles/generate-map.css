@@ -86,6 +86,12 @@
         transition: opacity 3s, box-shadow 1.5s;
       }
 
+      #pac-input:hover {
+        box-shadow: 5px 5px 5px aqua;
+        opacity: 1;
+        transition: opacity 1s, box-shadow 0.5s;
+      }
+
       #pac-input:focus {
         border-color: #4d90fe;
       }
@@ -102,11 +108,19 @@
         width: 345px;
       }
 
-      #pac-input:hover {
-        box-shadow: 5px 5px 5px aqua;
-        opacity: 1;
-        transition: opacity 1s, box-shadow 0.5s;
-      }
       .save {
         margin-left: 1em;
       }
+
+      .info-title {
+        font-family: 'Bungee','sans-serif';
+        font-style: italic;
+        text-align: center
+      }
+
+      .info-address {
+        font-size: 15px;
+        font-style: italic;
+        text-align: center
+      }
+
