@@ -1,6 +1,6 @@
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
 
@@ -10,16 +10,29 @@ module.exports = (db) => {
       VALUES (1)
       RETURNING *;`
     db.query(query)
-    .then(data => {
-      console.log('DATA ROWS:', data.rows)
-      res.json(data.rows);
-    })
-    .catch(err => console.log(err))
-  })
+      .then(data => {
+        // console.log('DATA ROWS:', data.rows);
+        res.json(data.rows);
+      })
+      .catch(err => console.log("here", err));
+  });
+
+  router.get("/", (req, res) => {
+    db.query(`SELECT id FROM maps;`)
+      .then(data => {
+        console.log("yay", data.rows[0]);
+        res.send(data.rows);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
 
-// SKELETON EXAMPLE
+  // SKELETON EXAMPLE
 
   // router.get("/", (req, res) => {
   //   let query = `SELECT * FROM widgets`;

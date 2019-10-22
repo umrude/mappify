@@ -11,7 +11,7 @@
 }
 
 .visible {
-visibility: visible
+visibility: visible;
 }
 .slide {
   left: -700px;

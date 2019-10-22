@@ -1,11 +1,11 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   router.post('/', (req, res) => {
-    const addresses = req.body.address
+    const addresses = req.body.address;
     let values = ``
-    
+
     for (const item of addresses) {
       values += `(1,'${item}')${addresses.indexOf(item) === addresses.length - 1 ? ' ' : ', '}`
     }
@@ -18,11 +18,11 @@ module.exports = (db) => {
     `;
 
     db.query(query)
-    .then(data => {
-      console.log('', data.rows);
-      res.send('success');
-    })
-    .catch(err => console.log(err))
+      .then(data => {
+        console.log('', data.rows);
+        res.send('success');
+      })
+      .catch(err => console.log(err))
   })
 
   return router

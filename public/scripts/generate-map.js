@@ -179,7 +179,7 @@ let stylesArray = [
       }
     ]
   }
-]
+];
 
 
 function initAutocomplete() {
@@ -323,20 +323,22 @@ function findAddress() {
 }
 
 
+
+
 $(document).ready(function () {
 
-  $('.save').click(function () {
+  $('.save').click(function (msg, sts, oth) {
     const address = findAddress();
     console.log('BODY DATA: ', address);
     $.ajax({
       method: 'POST',
       url: '/markers',
-      data: { address }
+      data: { address },
     })
-      .then(res => {
-        console.log('response', res)
+      .then((res) => {
+        console.log('response', res);
       })
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
   });
 
 });
