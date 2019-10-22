@@ -183,7 +183,9 @@ let stylesArray = [
   }
 ];
 
-function initMap(data) {
+function initMap() {
+
+  //new instance of map
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 49.2827,
@@ -193,7 +195,11 @@ function initMap(data) {
     // mapTypeId: 'roadmap',
     styles: stylesArray
   });
+
+  //initializes autocomplete via places API
   initAutocomplete(map);
+
+  //loads locations
   locationsFromDatabase(storedPlaceIds, map);
 
 }
@@ -221,7 +227,9 @@ function initAutocomplete(map) {
 
     let bounds = new google.maps.LatLngBounds();
 
+
     places.forEach(function(place) {
+
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
@@ -235,6 +243,9 @@ function initAutocomplete(map) {
       map.fitBounds(bounds);
       console.log(allPlaces);
     });
+
+
+    //if allplaces contains 0 elements OR if the element doesn't already exist in the array, push the element to array
     if (allPlaces.length === 0) {
       allPlaces.push(places[0]);
       displayLocations(allPlaces, map);
@@ -243,10 +254,10 @@ function initAutocomplete(map) {
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     }
   });
-  geocoder = new google.maps.Geocoder();
 
 }
 
+//checks allPlaces and makes sure current entry doesn't already exist in the array
 function checkLocations(allPlace, currentCheck) {
   let result = false;
   allPlace.forEach(function(place) {
@@ -268,9 +279,8 @@ function checkLocations(allPlace, currentCheck) {
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
   locations.forEach(function(place) {
-    let placeAddress = place.formatted_address;
 
-    // console.log('Place Address:', placeAddress);
+    let placeAddress = place.formatted_address;
     let name = place.name;
 
     let contentString = $(`<div class="text-center">
@@ -298,10 +308,11 @@ function displayLocations(locations, map) {
       infowindow.open(map, marker);
     });
 
+    //gets the remove button and location name from marker
     let removeButton = contentString[0].childNodes[5];
     let locationName = contentString[0].childNodes[1].innerHTML;
-    // console.log(locationName);
 
+    //removes location from display and array
     removeButton.addEventListener("click", function() {
       for (let [i, place] of allPlaces.entries()) {
         if (place.name === locationName) {
@@ -309,26 +320,27 @@ function displayLocations(locations, map) {
           console.log("removed items array", allPlaces);
         }
       }
+      //removes instance of marker
       marker.setMap(null);
     });
   });
 }
 
 function locationsFromDatabase(data, map) {
+  //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
+  //sets up the request to the API for each entry in data
   data.forEach(function(id) {
     let request = {
       placeId: id
     };
-
+    //makes request to api and pushs response to allPlaces then displays location
     service.getDetails(request, function(place, status) {
       allPlaces.push(place);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     });
   });
 }
-
-console.log(allPlaces);
 
 // JACKSON'S EDITS BELOW
 
