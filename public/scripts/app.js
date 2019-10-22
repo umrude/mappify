@@ -40,15 +40,17 @@ $(document).ready(function () {
       .then((idArray) => {
 
         for (let item of idArray) {
-          let mapListId = `<p>"${item.id}"</p>`;
-
+          let mapListId = `
+          <div class="list-of-links">
+          <p>${item.id}</p>
+          <h1>${item.title}Titile</h1>
+          <p>${item.description}Description</p>
+          <button type="button" data-map-id="${item.id}" class="btn btn-primary ">Load Map</button>
+        </div>`;
           $('.links').prepend(mapListId);
 
-
         }
-
       });
-    // renderLink();
   });
 
 

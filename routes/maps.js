@@ -18,9 +18,9 @@ module.exports = (db) => {
   });
 
   router.get("/", (req, res) => {
-    db.query(`SELECT id FROM maps;`)
+    db.query(`SELECT * FROM maps;`)
       .then(data => {
-        console.log("yay", data.rows[0]);
+        console.log("yay", data.rows);
         res.send(data.rows);
       })
       .catch(err => {
