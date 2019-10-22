@@ -191,7 +191,7 @@ function initAutocomplete() {
     zoom: 10,
     // mapTypeId: 'roadmap',
     styles: stylesArray
-     
+
   });
   // Create the search box and link it to the UI element.
   let input = document.getElementById('pac-input');
@@ -241,8 +241,8 @@ function initAutocomplete() {
       allPlaces.push(places[0]);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     }
-
   });
+  geocoder = new google.maps.Geocoder();
 }
 
 function checkLocations(allPlace, currentCheck) {
@@ -279,7 +279,7 @@ function displayLocations(locations, map) {
 
     //creates a marker for each location
     let marker = new google.maps.Marker({
-      position: place.geometry.location,
+      position: placeAddress,
       map: map,
       title: name,
       icon: 'https://i.ibb.co/qYvvDXn/red-marker.png',
@@ -308,7 +308,6 @@ function displayLocations(locations, map) {
     });
   });
 }
-
 
 
 // JACKSON'S EDITS BELOW
