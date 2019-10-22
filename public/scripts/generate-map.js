@@ -182,7 +182,7 @@ let stylesArray = [
   }
 ];
 
-function initMap(data) {
+function initMap() {
   let map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 49.2827,
@@ -193,7 +193,8 @@ function initMap(data) {
     styles: stylesArray
   });
   initAutocomplete(map);
-  locationsFromDatabase(["ChIJVVVFhnlxhlQRVqDISA_7Lc8", "ChIJQ9pJmH5xhlQRe_nvreYL37k"], map);
+  locationsFromDatabase(storedPlaceIds, map);
+
 }
 
 function initAutocomplete(map) {
@@ -242,6 +243,7 @@ function initAutocomplete(map) {
     }
   });
   geocoder = new google.maps.Geocoder();
+
 }
 
 function checkLocations(allPlace, currentCheck) {
