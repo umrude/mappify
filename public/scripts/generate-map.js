@@ -358,7 +358,8 @@ $(document).ready(function() {
   });
 
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
-  $(".my-maps").click(function() {
+  $(".my-maps").click(function(evt) {
+    const id = evt.target.data('map-id')
     $.ajax({
       method: "GET",
       url: "/maps/1"
