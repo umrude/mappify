@@ -19,7 +19,9 @@ module.exports = (db) => {
 
 
 
-// SKELETON EXAMPLE
+
+
+  // SKELETON EXAMPLE
 
   // router.get("/", (req, res) => {
   //   let query = `SELECT * FROM widgets`;
