@@ -20,7 +20,7 @@ INSERT INTO users (name, email, password) VALUES ('Jackson', 'jackson@stark.ca',
 CREATE TABLE maps (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  marker_id INTEGER REFERENCES maps(id) ON DELETE CASCADE,
+  -- marker_id INTEGER REFERENCES maps(id) ON DELETE CASCADE,
   title VARCHAR(255),
   description VARCHAR(255)
 );
@@ -28,7 +28,7 @@ CREATE TABLE maps (
 CREATE TABLE markers (
   id SERIAL PRIMARY KEY NOT NULL,
   map_id INTEGER REFERENCES maps(id),
-  address TEXT
+  place_id TEXT
 );
 
 CREATE TABLE contributions (

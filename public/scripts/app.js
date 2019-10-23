@@ -1,8 +1,6 @@
 
 $(document).ready(function () {
 
-
-
   $('.create-map-button').click(function () {
     $.ajax({
       method: "POST",
@@ -11,28 +9,12 @@ $(document).ready(function () {
   });
 
 
-  $('.my-map-click').click(function () {
+  // toggles list window when my maps is clicked
+  // sends request to DB to dynamically up date the my list map
+
+  $('.my-maps').click(function () {
     $('.list-my-maps').toggleClass('visible').toggleClass('slide');
     $('.to-grey').toggleClass('grey-screen');
-
-  });
-
-
-
-  //creating links in the list
-
-  const createList = (link) => {
-    return `<p>"${item.id}"</p>`;
-  };
-
-  const renderLink = () => {
-    let map = "map descrpition or id";
-    let $newLink = createListLink(map);
-    let result = map.link($newLink);
-    $('.links').prepend(result);
-  };
-
-  $('.my-map-click').click(function () {
     $.ajax({
       method: "GET",
       url: "/maps"
@@ -45,7 +27,7 @@ $(document).ready(function () {
           <p>${item.id}</p>
           <h1>${item.title}Titile</h1>
           <p>${item.description}Description</p>
-          <button type="button" data-map-id="${item.id}" class="btn btn-primary ">Load Map</button>
+          <button type="button" id="data-map-id${item.id}" class="btn btn-primary ">Load Map</button>
         </div>`;
           $('.links').prepend(mapListId);
 
