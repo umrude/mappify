@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -23,7 +24,11 @@ db.connect();
 // The :status token will be colored red for server error codes,
 // yellow for client error codes, cyan for redirection codes,
 // and uncolored for all other codes.
-
+app.use(cookieSession({
+  name: 'session',
+  keys: ['secret_keys'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
@@ -39,14 +44,14 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes
 // below with your own
-const usersRoutes = require("./routes/users");
+const loginRoutes = require("./routes/login");
 const mapsRoutes = require("./routes/maps");
 const markersRoutes = require("./routes/markers");
 
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/users", usersRoutes(db));
+app.use("/login", loginRoutes(db));
 app.use("/maps", mapsRoutes(db));
 app.use("/markers", markersRoutes(db));
 

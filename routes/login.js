@@ -9,17 +9,20 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+
+
+
+  router.get("/:id", (req, res) => {
+    let id = req.params.id;
+    req.session.user_id = id;
+
+    console.log('🍪 COOKIE SESSION ID: ', id)
+
+    res.render('index.ejs')
   });
+
+
+
+  
   return router;
 };

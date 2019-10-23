@@ -5,6 +5,7 @@ let allPlaces = [];
 let storedPlaceIds = [];
 let markers = [];
 let currentMapId;
+// let currentUserId;
 
 //calls placesAPI with place_id and gets object containing relevent data about place
 function locationsFromDatabase(data, map) {
@@ -72,7 +73,7 @@ function getUsersMaps() {
         let mapListId = `
         <div class="list-of-links">
         <p>${item.id}</p>
-        <h1>${item.title}Titile</h1>
+        <h1>Title${item.title}</h1>
         <p>${item.description}Description</p>
         <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
       </div>`;

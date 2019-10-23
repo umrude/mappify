@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
 $(document).ready(function () {
+
+  // getCurrentUserId() 
+
   $('.create-map-button').click(createMap);
 
   // toggles list window when my maps is clicked
