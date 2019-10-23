@@ -5,6 +5,7 @@ let allPlaces = [];
 let storedPlaceIds = [];
 let markers = [];
 
+//all styling
 let stylesArray = [
   {
     elementType: "geometry",
@@ -184,6 +185,7 @@ let stylesArray = [
   }
 ];
 
+//initializes map
 function initMap() {
 
   //new instance of map
@@ -202,6 +204,7 @@ function initMap() {
 
 }
 
+//sets up search bar with places api
 function initAutocomplete(map) {
   // Create the search box and link it to the UI element.
   let input = document.getElementById("pac-input");
@@ -274,6 +277,7 @@ function checkLocations(allPlace, currentCheck) {
   return result;
 }
 
+//pass all places in and generates markers and info-windows
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
   locations.forEach(function(place) {
@@ -326,6 +330,7 @@ function displayLocations(locations, map) {
   });
 }
 
+//calls placesAPI with place_id and gets object containing relevent data about place
 function locationsFromDatabase(data, map) {
 
   //calls the PlacesService API
@@ -345,7 +350,6 @@ function locationsFromDatabase(data, map) {
 
 
 // JACKSON'S EDITS BELOW
-
 function findPlaceId() {
   let markersPlaceIds = [];
   for (const place of allPlaces) {
