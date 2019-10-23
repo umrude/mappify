@@ -388,7 +388,6 @@ $(document).ready(function () {
     $.ajax({
       method: 'POST',
       url: '/markers',
-      data: { placeIds },
     })
       .then(placeIds => {
         console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
