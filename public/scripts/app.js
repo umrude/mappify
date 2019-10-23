@@ -31,7 +31,7 @@ $(document).ready(function () {
           <p>${item.id}</p>
           <h1>${item.title}Titile</h1>
           <p>${item.description}Description</p>
-          <button type="button" data-map-id="${item.id}" class=" load-map btn btn-primary ">Load Map</button>
+          <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
         </div>`;
           $('.links').prepend(mapListId);
 

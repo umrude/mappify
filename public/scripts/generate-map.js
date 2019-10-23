@@ -378,16 +378,19 @@ $(document).ready(function () {
   });
 
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
-  $(".my-maps").click(function () {
+  $(".load-map").click(function (eventObj) {
+    console.log("WHY");
     storedPlaceIds = [];
     allPlaces = [];
-
+    let mapId = $(eventObj.currentTarget).data('data-map-id');
+    console.log(mapId);
+    debugger;
     markers.forEach((marker) => {
       marker.setMap(null);
     });
     $.ajax({
-      method: 'POST',
-      url: '/markers',
+      method: 'GET',
+      url: '/maps/1',
     })
       .then(placeIds => {
         console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
@@ -402,23 +405,4 @@ $(document).ready(function () {
       .catch(err => console.error(err));
   });
 
-  // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
-  // TODO need to change button to the dynamically created one in the list
-
-  $(".load-map").click(function () {
-    $.ajax({
-      method: "GET",
-      url: "/maps/1"
-    })
-      .then(placeIds => {
-        console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
-
-        for (const item of placeIds) {
-          storedPlaceIds.push(item.place_id);
-        }
-        console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
-        locationsFromDatabase(storedPlaceIds, map);
-      })
-      .catch(err => console.error(err));
-  });
 });
