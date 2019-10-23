@@ -31,6 +31,7 @@ module.exports = (db) => {
 
   router.get('/:id', (req, res) => {
     let id = req.params.id;
+    console.log("id is: ", id)
     let query = `
       SELECT DISTINCT markers.place_id
       FROM markers
@@ -39,6 +40,7 @@ module.exports = (db) => {
       `;
     db.query(query, [id])
       .then(data => {
+        console.log("data is: ", data)
         console.log('\n SQL SELECT:  place_id --> Success ✅ \n\n', data.rows);
         res.send(data.rows);
       })

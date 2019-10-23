@@ -4,10 +4,11 @@ const router = express.Router();
 module.exports = (db) => {
   router.post('/', (req, res) => {
     const placeIds = req.body.placeIds;
+    const mapId = req.body.mapId;
     let values = ``;
 
     for (const item of placeIds) {
-      values += `(1,'${item}')${placeIds.indexOf(item) === placeIds.length - 1 ? ' ' : ', '}`;
+      values += `(${mapId},'${item}')${placeIds.indexOf(item) === placeIds.length - 1 ? ' ' : ', '}`;
     }
     console.log('values: ', values);
 

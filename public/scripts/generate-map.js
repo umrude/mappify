@@ -360,49 +360,41 @@ function findPlaceId() {
   }
   return markersPlaceIds;
 }
-
 $(document).ready(function () {
   // SAVE... MAP'S MARKERS TO DATABASE
   $(".save").click(function () {
     const placeIds = findPlaceId();
-    console.log("BODY DATA: ", placeIds);
+
     $.ajax({
       method: "POST",
       url: "/markers",
-      data: { placeIds }
+      data: { placeIds: placeIds }
     })
       .then(res => {
         console.log("POST:  NEW MARKERS --> Success! ✅", res);
       })
       .catch(err => console.error(err));
   });
-
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
-  $(".load-map").click(function (eventObj) {
-    console.log("WHY");
+  $(".links").on('click', 'button', function (eventObj) {
     storedPlaceIds = [];
     allPlaces = [];
-    let mapId = $(eventObj.currentTarget).data('data-map-id');
-    console.log(mapId);
-    debugger;
+    let mapId = eventObj.currentTarget.dataset.mapId;
     markers.forEach((marker) => {
       marker.setMap(null);
     });
     $.ajax({
-      method: 'GET',
-      url: '/maps/1',
+      method: "GET",
+      url: "/maps/" + mapId
     })
       .then(placeIds => {
         console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
-
         for (const item of placeIds) {
           storedPlaceIds.push(item.place_id);
         }
         console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
-
         locationsFromDatabase(storedPlaceIds, map);
       })
       .catch(err => console.error(err));
   });
-
 });
