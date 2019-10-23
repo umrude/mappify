@@ -17,7 +17,7 @@ $(document).ready(function () {
     toggleListMapClass();
     repopulateSavedMarkersByMapId(eventObj);
   });
+
+  $('')
 });
-
-
 
