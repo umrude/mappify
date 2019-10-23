@@ -1,10 +1,5 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
-let map;
-let allPlaces = [];
-let storedPlaceIds = [];
-let markers = [];
-
 //all styling
 let stylesArray = [
   {
@@ -331,70 +326,60 @@ function displayLocations(locations, map) {
 }
 
 //calls placesAPI with place_id and gets object containing relevent data about place
-function locationsFromDatabase(data, map) {
+// function locationsFromDatabase(data, map) {
 
-  //calls the PlacesService API
-  let service = new google.maps.places.PlacesService(map);
-  //sets up the request to the API for each entry in data
-  data.forEach(function (id) {
-    let request = {
-      placeId: id
-    };
-    //makes request to api and pushs response to allPlaces then displays location
-    service.getDetails(request, function (place, status) {
-      allPlaces.push(place);
-      displayLocations([allPlaces[allPlaces.length - 1]], map);
-    });
-  });
-}
+//   //calls the PlacesService API
+//   let service = new google.maps.places.PlacesService(map);
+//   //sets up the request to the API for each entry in data
+//   data.forEach(function (id) {
+//     let request = {
+//       placeId: id
+//     };
+//     //makes request to api and pushs response to allPlaces then displays location
+//     service.getDetails(request, function (place, status) {
+//       allPlaces.push(place);
+//       displayLocations([allPlaces[allPlaces.length - 1]], map);
+//     });
+//   });
+// }
 
 
-// JACKSON'S EDITS BELOW
-function findPlaceId() {
-  let markersPlaceIds = [];
-  for (const place of allPlaces) {
-    console.log(place);
-    markersPlaceIds.push(place.place_id);
-    console.log("Place IDs For Database: ", markersPlaceIds);
 
-  }
-  return markersPlaceIds;
-}
 $(document).ready(function () {
-  // SAVE... MAP'S MARKERS TO DATABASE
-  $(".save").click(function () {
-    const placeIds = findPlaceId();
+  // // SAVE... MAP'S MARKERS TO DATABASE
+  // $(".save").click(function () {
+  //   const placeIds = findPlaceId();
 
-    $.ajax({
-      method: "POST",
-      url: "/markers",
-      data: { placeIds: placeIds }
-    })
-      .then(res => {
-        console.log("POST:  NEW MARKERS --> Success! ✅", res);
-      })
-      .catch(err => console.error(err));
-  });
-  // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
-  $(".links").on('click', 'button', function (eventObj) {
-    storedPlaceIds = [];
-    allPlaces = [];
-    let mapId = eventObj.currentTarget.dataset.mapId;
-    markers.forEach((marker) => {
-      marker.setMap(null);
-    });
-    $.ajax({
-      method: "GET",
-      url: "/maps/" + mapId
-    })
-      .then(placeIds => {
-        console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
-        for (const item of placeIds) {
-          storedPlaceIds.push(item.place_id);
-        }
-        console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
-        locationsFromDatabase(storedPlaceIds, map);
-      })
-      .catch(err => console.error(err));
-  });
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/markers",
+  //     data: { placeIds: placeIds }
+  //   })
+  //     .then(res => {
+  //       console.log("POST:  NEW MARKERS --> Success! ✅", res);
+  //     })
+  //     .catch(err => console.error(err));
+  // });
+  // // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
+  // $(".links").on('click', 'button', function (eventObj) {
+  //   storedPlaceIds = [];
+  //   allPlaces = [];
+  //   let mapId = eventObj.currentTarget.dataset.mapId;
+  //   markers.forEach((marker) => {
+  //     marker.setMap(null);
+  //   });
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/maps/" + mapId
+  //   })
+  //     .then(placeIds => {
+  //       console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
+  //       for (const item of placeIds) {
+  //         storedPlaceIds.push(item.place_id);
+  //       }
+  //       console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
+  //       locationsFromDatabase(storedPlaceIds, map);
+  //     })
+  //     .catch(err => console.error(err));
+  // });
 });

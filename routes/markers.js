@@ -5,6 +5,7 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     const placeIds = req.body.placeIds;
     const mapId = req.body.mapId;
+    console.log("req body: ", req.body);
     let values = ``;
 
     for (const item of placeIds) {
@@ -13,7 +14,6 @@ module.exports = (db) => {
     console.log('values: ', values);
 
     let query = `
-      DELETE FROM markers;
       INSERT INTO markers (map_id, place_id)
       VALUES ${values}
       RETURNING*;

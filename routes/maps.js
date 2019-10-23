@@ -12,8 +12,8 @@ module.exports = (db) => {
       `;
     db.query(query)
       .then(data => {
-        console.log('\n SQL INSERT:  map_id --> Success ✅ \n\n', data.rows);
-        res.json(data.rows);
+        console.log('\n SQL INSERT:  map_id --> Success ✅ \n\n', data.rows[0]);
+        res.json({ id: data.rows[0].id });
       })
       .catch(err => console.log("here", err));
   });
@@ -31,7 +31,6 @@ module.exports = (db) => {
 
   router.get('/:id', (req, res) => {
     let id = req.params.id;
-    console.log("id is: ", id)
     let query = `
       SELECT DISTINCT markers.place_id
       FROM markers
