@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/generate-map.css" type="text/css" />
   <link rel="stylesheet" href="/styles/list-links.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/form-styles.css" type="text/css" />
 
   <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -30,7 +31,7 @@
   <nav class="navbar navbar-expand-lg ">
     <a class="navbar-brand" href="#">Mappify</a>
 
-    <button type="button" class="btn btn-success create-map-button">Create Map</button>
+    <button type="button" class="btn btn-success show-form">Create Map</button>
     <button type="button" class="btn btn-primary save">Save Map</button>
 
     <div class="btn-group navbar-nav ml-auto">
@@ -54,6 +55,19 @@
     </section>
   </div>
   <div id="map" class="to-grey"></div>
+  <!-- I'm HERE!! -->
+  <form class="title-form">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Title</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Title">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Example textarea</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary create-map-button">OK</button>
+
+  </form>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
