@@ -1,13 +1,13 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   router.post('/', (req, res) => {
-    const placeIds = req.body.placeIds
-    let values = ``
-    
+    const placeIds = req.body.placeIds;
+    let values = ``;
+
     for (const item of placeIds) {
-      values += `(1,'${item}')${placeIds.indexOf(item) === placeIds.length - 1 ? ' ' : ', '}`
+      values += `(1,'${item}')${placeIds.indexOf(item) === placeIds.length - 1 ? ' ' : ', '}`;
     }
     console.log('values: ', values);
 
@@ -18,12 +18,12 @@ module.exports = (db) => {
     `;
 
     db.query(query)
-    .then(data => {
-      console.log('', data.rows);
-      res.send('success');
-    })
-    .catch(err => console.log(err))
-  })
+      .then(data => {
+        console.log('', data.rows);
+        res.send('success');
+      })
+      .catch(err => console.log(err));
+  });
 
-  return router
-}
+  return router;
+};

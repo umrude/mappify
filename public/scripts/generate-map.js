@@ -212,13 +212,13 @@ function initAutocomplete(map) {
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener("bounds_changed", function() {
+  map.addListener("bounds_changed", function () {
     searchBox.setBounds(map.getBounds());
   });
 
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
-  searchBox.addListener("places_changed", function() {
+  searchBox.addListener("places_changed", function () {
     let places = searchBox.getPlaces();
 
     if (places.length === 0) {
@@ -228,7 +228,7 @@ function initAutocomplete(map) {
     let bounds = new google.maps.LatLngBounds();
 
 
-    places.forEach(function(place) {
+    places.forEach(function (place) {
 
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
@@ -260,7 +260,7 @@ function initAutocomplete(map) {
 //checks allPlaces and makes sure current entry doesn't already exist in the array
 function checkLocations(allPlace, currentCheck) {
   let result = false;
-  allPlace.forEach(function(place) {
+  allPlace.forEach(function (place) {
     if (place.place_id === currentCheck[0].place_id) {
       console.log(
         "in array",
@@ -278,7 +278,7 @@ function checkLocations(allPlace, currentCheck) {
 
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
-  locations.forEach(function(place) {
+  locations.forEach(function (place) {
 
     let placeAddress = place.formatted_address;
     let name = place.name;
@@ -304,7 +304,7 @@ function displayLocations(locations, map) {
     });
 
     //event listener for each marker
-    marker.addListener("click", function() {
+    marker.addListener("click", function () {
       infowindow.open(map, marker);
     });
 
@@ -313,7 +313,7 @@ function displayLocations(locations, map) {
     let locationName = contentString[0].childNodes[1].innerHTML;
 
     //removes location from display and array
-    removeButton.addEventListener("click", function() {
+    removeButton.addEventListener("click", function () {
       for (let [i, place] of allPlaces.entries()) {
         if (place.name === locationName) {
           allPlaces.splice(i, 1);
@@ -330,12 +330,12 @@ function locationsFromDatabase(data, map) {
   //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
   //sets up the request to the API for each entry in data
-  data.forEach(function(id) {
+  data.forEach(function (id) {
     let request = {
       placeId: id
     };
     //makes request to api and pushs response to allPlaces then displays location
-    service.getDetails(request, function(place, status) {
+    service.getDetails(request, function (place, status) {
       allPlaces.push(place);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     });
@@ -353,9 +353,9 @@ function findPlaceId() {
   return markersPlaceIds;
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   // SAVE... MAP'S MARKERS TO DATABASE
-  $(".save").click(function() {
+  $(".save").click(function () {
     const placeIds = findPlaceId();
     console.log("BODY DATA: ", placeIds);
     $.ajax({
@@ -370,21 +370,43 @@ $(document).ready(function() {
   });
 
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
-  $(".my-maps").click(function(evt) {
-    const id = evt.target.data('map-id')
-    $.ajax({
-      method: "GET",
-      url: "/maps/1"
-    })
-      .then(placeIds => {
-        console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
+  
+  // $(".my-maps").click(function(evt) {
+  //   const id = evt.target.data('map-id')
 
-        for (const item of placeIds) {
-          storedPlaceIds.push(item.place_id);
-        }
-        console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
-        locationsFromDatabase(storedPlaceIds, map);
+
+
+  $('.save').click(function () {
+    const address = findAddress();
+    console.log('BODY DATA: ', address);
+    $.ajax({
+      method: 'POST',
+      url: '/markers',
+      data: { address },
+    })
+      .then((res) => {
+        console.log('response', res);
       })
       .catch(err => console.error(err));
   });
+
+  // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
+  // TODO need to change button to the dynamically created one in the list
+
+  // $(".my-maps").click(function () {
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/maps/1"
+  //   })
+  //     .then(placeIds => {
+  //       console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
+
+  //       for (const item of placeIds) {
+  //         storedPlaceIds.push(item.place_id);
+  //       }
+  //       console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
+  //       locationsFromDatabase(storedPlaceIds, map);
+  //     })
+  //     .catch(err => console.error(err));
+  // });
 });
