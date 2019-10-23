@@ -3,7 +3,9 @@
 let map;
 let allPlaces = [];
 let storedPlaceIds = [];
+let markers = [];
 
+//all styling
 let stylesArray = [
   {
     elementType: "geometry",
@@ -183,6 +185,7 @@ let stylesArray = [
   }
 ];
 
+//initializes map
 function initMap() {
 
   //new instance of map
@@ -199,11 +202,9 @@ function initMap() {
   //initializes autocomplete via places API
   initAutocomplete(map);
 
-  //loads locations
-  locationsFromDatabase(storedPlaceIds, map);
-
 }
 
+//sets up search bar with places api
 function initAutocomplete(map) {
   // Create the search box and link it to the UI element.
   let input = document.getElementById("pac-input");
@@ -276,6 +277,7 @@ function checkLocations(allPlace, currentCheck) {
   return result;
 }
 
+//pass all places in and generates markers and info-windows
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
   locations.forEach(function (place) {
@@ -303,6 +305,8 @@ function displayLocations(locations, map) {
       animation: google.maps.Animation.BOUNCE
     });
 
+    markers.push(marker);
+
     //event listener for each marker
     marker.addListener("click", function () {
       infowindow.open(map, marker);
@@ -326,7 +330,9 @@ function displayLocations(locations, map) {
   });
 }
 
+//calls placesAPI with place_id and gets object containing relevent data about place
 function locationsFromDatabase(data, map) {
+
   //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
   //sets up the request to the API for each entry in data
@@ -342,13 +348,15 @@ function locationsFromDatabase(data, map) {
   });
 }
 
-// JACKSON'S EDITS BELOW
 
+// JACKSON'S EDITS BELOW
 function findPlaceId() {
   let markersPlaceIds = [];
   for (const place of allPlaces) {
+    console.log(place);
     markersPlaceIds.push(place.place_id);
     console.log("Place IDs For Database: ", markersPlaceIds);
+
   }
   return markersPlaceIds;
 }
@@ -369,19 +377,42 @@ $(document).ready(function () {
       .catch(err => console.error(err));
   });
 
+<<<<<<< HEAD
 
 
 
   $('.save').click(function () {
     const address = findAddress();
     console.log('BODY DATA: ', address);
+=======
+  // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
+  $(".my-maps").click(function() {
+    storedPlaceIds = [];
+    allPlaces = [];
+
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+>>>>>>> doubledown
     $.ajax({
       method: 'POST',
       url: '/markers',
       data: { address },
     })
+<<<<<<< HEAD
       .then((res) => {
         console.log('response', res);
+=======
+      .then(placeIds => {
+        console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
+
+        for (const item of placeIds) {
+          storedPlaceIds.push(item.place_id);
+        }
+        console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
+
+        locationsFromDatabase(storedPlaceIds, map);
+>>>>>>> doubledown
       })
       .catch(err => console.error(err));
   });
