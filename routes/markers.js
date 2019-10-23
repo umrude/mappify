@@ -12,6 +12,7 @@ module.exports = (db) => {
     console.log('values: ', values);
 
     let query = `
+      DELETE FROM markers;
       INSERT INTO markers (map_id, place_id)
       VALUES ${values}
       RETURNING*;
