@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
 
@@ -16,13 +16,13 @@ module.exports = (db) => {
     let id = req.params.id;
     req.session.user_id = id;
 
-    console.log('🍪 COOKIE SESSION ID: ', id)
+    console.log('🍪 COOKIE SESSION ID: ', id);
 
-    res.render('index.ejs')
+    res.render('index.ejs');
   });
 
 
 
-  
+
   return router;
 };
