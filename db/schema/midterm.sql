@@ -16,6 +16,10 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (name, email, password) VALUES ('Jackson', 'jackson@stark.ca', 'password');
+INSERT INTO users (name, email, password) VALUES ('Mel', 'mel@currie.ca', 'password');
+INSERT INTO users (name, email, password) VALUES ('Gabi', 'gabi@geollegeu.ca', 'password');
+
+
 
 CREATE TABLE maps (
   id SERIAL PRIMARY KEY NOT NULL,

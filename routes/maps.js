@@ -11,7 +11,7 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     let query = `
       INSERT INTO maps (user_id)
-      VALUES (1)
+      VALUES (${req.session.user_id})
       RETURNING *;
       `;
     db.query(query)
