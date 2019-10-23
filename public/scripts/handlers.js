@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 $(document).ready(function () {
   $('.create-map-button').click(createMap);
 
@@ -16,7 +17,7 @@ $(document).ready(function () {
     toggleListMapClass();
     repopulateSavedMarkersByMapId(eventObj);
   });
+
+  $('')
 });
-
-
 
