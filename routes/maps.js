@@ -1,8 +1,12 @@
-
 const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
+
+
+
+
+
   // puts map into database initially
   router.post('/', (req, res) => {
     let query = `
@@ -19,6 +23,10 @@ module.exports = (db) => {
   });
 
 
+
+
+
+
   // gets info from database about maps and passes to the front-end to store in maps lists
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM maps;`)
@@ -29,7 +37,14 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   });
 
-  router.get('/:id', (req, res) => {
+
+
+
+
+
+
+  
+  router.get("/:id", (req, res) => {
     let id = req.params.id;
     let query = `
       SELECT DISTINCT markers.place_id
@@ -45,37 +60,6 @@ module.exports = (db) => {
       })
       .catch(err => console.log(err));
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // SKELETON EXAMPLE
-
-  // router.get("/", (req, res) => {
-  //   let query = `SELECT * FROM widgets`;
-  //   console.log(query);
-  //   db.query(query)
-  //     .then(data => {
-  //       const widgets = data.rows;
-  //       res.json({ widgets });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
 
   return router;
 };

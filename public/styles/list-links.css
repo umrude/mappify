@@ -1,13 +1,15 @@
 .list-my-maps {
   position: absolute;
   z-index: 1;
-  height: 100%;
-  width: 50%;
-  background-color: blanchedalmond;
+  height: 94%;
+  width: 38%;
+  background: rgb(148,0,238);
+  background: linear-gradient(0deg, rgba(148,0,238,0.6435496794871796) 25%, rgba(4,30,252,0.7050881410256411) 100%);
   display: flex;
   flex-direction: column;
   text-align: center;
   visibility: hidden;
+  color: white;
   overflow: scroll;
 }
 
