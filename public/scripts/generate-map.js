@@ -377,14 +377,6 @@ $(document).ready(function () {
       .catch(err => console.error(err));
   });
 
-<<<<<<< HEAD
-
-
-
-  $('.save').click(function () {
-    const address = findAddress();
-    console.log('BODY DATA: ', address);
-=======
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
   $(".my-maps").click(function() {
     storedPlaceIds = [];
@@ -393,16 +385,11 @@ $(document).ready(function () {
     markers.forEach((marker) => {
       marker.setMap(null);
     });
->>>>>>> doubledown
     $.ajax({
       method: 'POST',
       url: '/markers',
       data: { address },
     })
-<<<<<<< HEAD
-      .then((res) => {
-        console.log('response', res);
-=======
       .then(placeIds => {
         console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
 
@@ -412,7 +399,6 @@ $(document).ready(function () {
         console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
 
         locationsFromDatabase(storedPlaceIds, map);
->>>>>>> doubledown
       })
       .catch(err => console.error(err));
   });

@@ -15,7 +15,6 @@ module.exports = (db) => {
         console.log('\n SQL INSERT:  map_id --> Success ✅ \n\n', data.rows);
         res.json(data.rows);
       })
-<<<<<<< HEAD
       .catch(err => console.log("here", err));
   });
 
@@ -29,11 +28,6 @@ module.exports = (db) => {
       })
       .catch(err => console.log(err));
   });
-=======
-      .catch(err => console.log(err));
-  });
-
->>>>>>> doubledown
 
   router.get('/:id', (req, res) => {
     let id = req.params.id;

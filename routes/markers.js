@@ -3,13 +3,8 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.post('/', (req, res) => {
-<<<<<<< HEAD
-    const placeIds = req.body.placeIds
-    let values = ``
-=======
     const placeIds = req.body.placeIds;
     let values = ``;
->>>>>>> doubledown
 
     for (const item of placeIds) {
       values += `(1,'${item}')${placeIds.indexOf(item) === placeIds.length - 1 ? ' ' : ', '}`;
@@ -28,16 +23,8 @@ module.exports = (db) => {
         console.log('', data.rows);
         res.send('success');
       })
-<<<<<<< HEAD
-      .catch(err => console.log(err))
-  })
-
-  return router
-}
-=======
       .catch(err => console.log(err));
   });
 
   return router;
 };
->>>>>>> doubledown
