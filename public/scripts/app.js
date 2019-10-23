@@ -16,6 +16,7 @@ $(document).ready(function () {
   $('.my-maps').click(function () {
     $('.list-my-maps').toggleClass('visible').toggleClass('slide');
     $('.to-grey').toggleClass('grey-screen');
+    $('.list-my-maps').empty();
     $.ajax({
       method: "GET",
       url: "/maps"
@@ -26,9 +27,9 @@ $(document).ready(function () {
           let mapListId = `
           <div class="list-of-links">
           <p>${item.id}</p>
-          <h1>${item.title}Titile</h1>
+          <h1>${item.title}Title</h1>
           <p>${item.description}Description</p>
-          <button type="button" id="data-map-id${item.id}" class="btn btn-primary ">Load Map</button>
+          <button type="button" id="${item.id}" class="btn btn-primary ">Load Map</button>
         </div>`;
           $('.links').prepend(mapListId);
 
