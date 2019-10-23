@@ -12,6 +12,7 @@ $(document).ready(function () {
 
   // toggles list window when my maps is clicked
   // sends request to DB to dynamically up date the my list map
+  
 
   $('.my-maps').click(function () {
     $('.list-my-maps').toggleClass('visible').toggleClass('slide');
@@ -25,31 +26,17 @@ $(document).ready(function () {
 
         for (let item of idArray) {
           let mapListId = `
-          <div class="list-of-links">
-          <p>${item.id}</p>
-          <h1>${item.title}Title</h1>
-          <p>${item.description}Description</p>
-          <button type="button" id="${item.id}" class="btn btn-primary ">Load Map</button>
+          <div class="list-of-links load-map">
+          <h1>Title: ${item.title}</h1>
+          <p>Description: ${item.description}</p>
+          <p>ID: ${item.id}</p>
+          <button type="button" id="${item.id}" class="btn btn-primary load-map">Load Map</button>
         </div>`;
-          $('.links').prepend(mapListId);
+          $('.list-my-maps').prepend(mapListId);
 
         }
       });
   });
-
-
-  // SKELETON EXAMPLE
-
-  // $(() => {
-  //   $.ajax({
-  //     method: "POST",
-  //     url: "/maps"
-  //   }).done((result) => {
-  //     for (user of users) {
-  //       $("<div>").text(user.name).appendTo($("body"));
-  //     }
-  //   });
-
 });
 
 
