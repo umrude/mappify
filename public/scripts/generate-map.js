@@ -3,6 +3,7 @@
 let map;
 let allPlaces = [];
 let storedPlaceIds = [];
+let markers = [];
 
 let stylesArray = [
   {
@@ -199,9 +200,6 @@ function initMap() {
   //initializes autocomplete via places API
   initAutocomplete(map);
 
-  //loads locations
-  locationsFromDatabase(storedPlaceIds, map);
-
 }
 
 function initAutocomplete(map) {
@@ -303,6 +301,8 @@ function displayLocations(locations, map) {
       animation: google.maps.Animation.BOUNCE
     });
 
+    markers.push(marker);
+
     //event listener for each marker
     marker.addListener("click", function() {
       infowindow.open(map, marker);
@@ -327,6 +327,7 @@ function displayLocations(locations, map) {
 }
 
 function locationsFromDatabase(data, map) {
+
   //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
   //sets up the request to the API for each entry in data
@@ -342,13 +343,16 @@ function locationsFromDatabase(data, map) {
   });
 }
 
+
 // JACKSON'S EDITS BELOW
 
 function findPlaceId() {
   let markersPlaceIds = [];
   for (const place of allPlaces) {
+    console.log(place);
     markersPlaceIds.push(place.place_id);
     console.log("Place IDs For Database: ", markersPlaceIds);
+
   }
   return markersPlaceIds;
 }
@@ -371,6 +375,12 @@ $(document).ready(function() {
 
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
   $(".my-maps").click(function() {
+    storedPlaceIds = [];
+    allPlaces = [];
+
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
     $.ajax({
       method: "GET",
       url: "/maps/1"
@@ -382,6 +392,7 @@ $(document).ready(function() {
           storedPlaceIds.push(item.place_id);
         }
         console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
+
         locationsFromDatabase(storedPlaceIds, map);
       })
       .catch(err => console.error(err));
