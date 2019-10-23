@@ -373,12 +373,12 @@ $(document).ready(function () {
 
 
   $('.save').click(function () {
-    const address = findAddress();
-    console.log('BODY DATA: ', address);
+    const placeIds = findPlaceId();
+    console.log('BODY DATA: ', placeIds);
     $.ajax({
       method: 'POST',
       url: '/markers',
-      data: { address },
+      data: { placeIds },
     })
       .then((res) => {
         console.log('response', res);
@@ -389,20 +389,20 @@ $(document).ready(function () {
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
   // TODO need to change button to the dynamically created one in the list
 
-  // $(".my-maps").click(function () {
-  //   $.ajax({
-  //     method: "GET",
-  //     url: "/maps/1"
-  //   })
-  //     .then(placeIds => {
-  //       console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
+  $(".load-map").click(function () {
+    $.ajax({
+      method: "GET",
+      url: "/maps/1"
+    })
+      .then(placeIds => {
+        console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
 
-  //       for (const item of placeIds) {
-  //         storedPlaceIds.push(item.place_id);
-  //       }
-  //       console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
-  //       locationsFromDatabase(storedPlaceIds, map);
-  //     })
-  //     .catch(err => console.error(err));
-  // });
+        for (const item of placeIds) {
+          storedPlaceIds.push(item.place_id);
+        }
+        console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
+        locationsFromDatabase(storedPlaceIds, map);
+      })
+      .catch(err => console.error(err));
+  });
 });

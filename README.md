@@ -1,5 +1,11 @@
 LHL Node Skeleton
 =========
+
+## TODO
+- creatre-Map button becomes the prompt for forum to 
+- enter title and description
+- then... the button on the create forum enters the map.id +title +description in the DB
+
 # JACKSON IS HERE...
 ## Project Setup
 
