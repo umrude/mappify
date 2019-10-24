@@ -1,10 +1,9 @@
 /* eslint-disable no-undef */
 $(document).ready(function () {
 
-  // getCurrentUserId() 
+  // getCurrentUserId()
 
   $('.create-map-button').click(createMap);
-
   // toggles list window when my maps is clicked
   // sends request to DB to dynamically up date the my list map
   $('.my-maps').click(function () {

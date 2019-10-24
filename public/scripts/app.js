@@ -43,17 +43,25 @@ function createMap() {
   markers.forEach((marker) => {
     marker.setMap(null);
   });
+  let title = $('.title').val();
+  let description = $('.description').val();
+
+
   $.ajax({
     method: "POST",
-    url: "/maps"
+    url: "/maps",
+    data: { title: title, description: description }
   })
     .then((result) => {
       console.log("RESULT FROM CREATE: ", result);
+      $('.title').val("");
+      $('.description').val("");
       currentMapId = result.id;
     }).catch((error) => {
       console.log("ERROR CREATING MAP", error);
     });
 }
+
 
 function toggleListMapClass() {
 

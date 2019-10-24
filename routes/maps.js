@@ -9,9 +9,11 @@ module.exports = (db) => {
 
   // puts map into database initially
   router.post('/', (req, res) => {
+    let title = req.body.title;
+    let desc = req.body.description;
     let query = `
-      INSERT INTO maps (user_id)
-      VALUES (${req.session.user_id})
+      INSERT INTO maps (user_id, title, description)
+      VALUES (${req.session.user_id}, '${title}', '${desc}')
       RETURNING *;
       `;
     db.query(query)
@@ -43,7 +45,7 @@ module.exports = (db) => {
 
 
 
-  
+
   router.get("/:id", (req, res) => {
     let id = req.params.id;
     let query = `
