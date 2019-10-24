@@ -14,12 +14,12 @@ function locationsFromDatabase(data, map) {
   //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
   //sets up the request to the API for each entry in data
-  data.forEach(function(id) {
+  data.forEach(function (id) {
     let request = {
       placeId: id
     };
     //makes request to api and pushs response to allPlaces then displays location
-    service.getDetails(request, function(place, status) {
+    service.getDetails(request, function (place, status) {
       allPlaces.push(place);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     });

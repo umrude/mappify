@@ -38,6 +38,6 @@ visibility: visible;
 .list-description {
   color: red;
   font-family: 'Bungee', 'sans-serif';
-  font-style: italic; 
+  font-style: italic;
   text-shadow: 3px 3px 0 black;
 }
