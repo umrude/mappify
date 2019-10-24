@@ -90,7 +90,7 @@ function addFavoriteMap() {
 function toggleListMapClass() {
   $('.list-maps').addClass('visible').addClass('slide');
   $('.to-grey').addClass('grey-screen');
-  $('.list-of-links').empty();
+  $('.links').empty();
 }
 
 function dynamicHtmlMapList(mapIdArray) {

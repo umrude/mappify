@@ -1,0 +1,31 @@
+.map-desc {
+  position: absolute;
+  bottom: 0%;
+  left: 2%;
+  /* background: linear-gradient(0deg, #a670F0 25%, #AFA2FF 100%); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.5em;
+  /* width: 35%; */
+  border-radius: 0.5em;
+  transition: opacity 3s, box-shadow 1.5s;
+  font-size: 22px;
+  font-weight: bolder;
+  font-style: italic;
+  font-family: 'Bungee', 'sans-serif';
+  color: white;
+}
+
+.hide-desc {
+  visibility: hidden;
+}
+
+.title-overlay {
+
+}
+
+.desc-overlay {
+color: magenta
+}
