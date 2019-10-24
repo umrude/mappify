@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
 /*
  * All routes for Users are defined here
  * Since this file is loaded in server.js into api/users,
@@ -17,8 +19,8 @@ module.exports = (db) => {
     req.session.user_id = id;
 
     console.log('🍪 COOKIE SESSION ID: ', id);
-
-    res.render('index.ejs');
+    let templateVars = { id: req.session.user_id};
+    res.render('index.ejs', templateVars);
   });
 
 

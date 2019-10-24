@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
 let map;
@@ -13,12 +14,12 @@ function locationsFromDatabase(data, map) {
   //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
   //sets up the request to the API for each entry in data
-  data.forEach(function (id) {
+  data.forEach(function(id) {
     let request = {
       placeId: id
     };
     //makes request to api and pushs response to allPlaces then displays location
-    service.getDetails(request, function (place, status) {
+    service.getDetails(request, function(place, status) {
       allPlaces.push(place);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     });
@@ -45,7 +46,6 @@ function createMap() {
   });
   let title = $('.title').val();
   let description = $('.description').val();
-
 
   $.ajax({
     method: "POST",
@@ -76,14 +76,12 @@ function addFavoriteMap() {
 }
 
 function toggleListMapClass() {
-
   $('.list-maps').addClass('visible').addClass('slide');
   $('.to-grey').addClass('grey-screen');
   $('.list-of-links').empty();
 }
 
 function dynamicHtmlMapList(mapIdArray) {
-
   for (let item of mapIdArray) {
     let mapListId = `
     <br>
@@ -105,7 +103,7 @@ function getDiscoverMaps() {
     url: "/maps"
   })
     .then((mapIdArray) => {
-      $('.list-maps').children('h2').html('All Maps')
+      $('.list-maps').children('h2').html('All Maps');
       dynamicHtmlMapList(mapIdArray);
     });
 }
@@ -117,7 +115,7 @@ function getUserMaps() {
     url: "/maps/user"
   })
     .then((mapIdArray) => {
-      $('.list-maps').children('h2').html('My Maps')
+      $('.list-maps').children('h2').html('My Maps');
       dynamicHtmlMapList(mapIdArray);
     });
 }
@@ -130,7 +128,7 @@ function getFavoriteMaps() {
   })
     .then((mapIdArray) => {
       console.log('mapIdArray: ', mapIdArray);
-      $('.list-maps').children('h2').html('My Favorites')
+      $('.list-maps').children('h2').html('My Favorites');
       dynamicHtmlMapList(mapIdArray);
     });
 }

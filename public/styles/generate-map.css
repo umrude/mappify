@@ -25,6 +25,17 @@
         padding-right: 20px;
       }
 
+      .navbar-brand:hover {
+        color: white;
+      }
+
+      .login {
+        color: white;
+        font-family: 'Bungee',
+        'sans-serif';
+        margin-right: 15px;
+      }
+
       #description {
         font-family: Roboto;
         font-size: 15px;

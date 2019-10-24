@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // load .env data into process.env
 require('dotenv').config();
 

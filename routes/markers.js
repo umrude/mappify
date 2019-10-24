@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
+  //adds markers to db
   router.post('/', (req, res) => {
     const placeIds = req.body.placeIds;
     const mapId = req.body.mapId;
