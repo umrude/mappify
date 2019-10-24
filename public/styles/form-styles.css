@@ -1,14 +1,44 @@
 .title-form {
   position: absolute;
-  top: 2em;
-  left: 26em;
-  background-color: aqua;
+  top: 25%;
+  left: 33%;
+  background: linear-gradient(0deg, #a670F0 25%, #AFA2FF 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 0.5em;
-  width: 30%;
-  /* visibility: hidden; */
+  width: 35%;
+  border-radius: 0.5em;
+  transition: opacity 3s, box-shadow 1.5s;
+  font-size: 24px;
+  font-weight: bolder;
+  color: black;
 }
 
+.title-form:hover {
+  box-shadow: 5px 5px 5px aqua;
+  opacity: 1;
+  transition: opacity 1s, box-shadow 0.5s;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.create-map-button {
+  width: 30%;
+  background: #5A6268;
+  outline: none;
+  border: none;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+  display: none;
+
+}

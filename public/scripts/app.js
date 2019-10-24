@@ -81,8 +81,8 @@ function getUsersMaps() {
         let mapListId = `
         <div class="list-of-links">
         <p>${item.id}</p>
-        <h1>Title${item.title}</h1>
-        <p>${item.description}Description</p>
+        <h1>${item.title}</h1>
+        <p>${item.description}</p>
         <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
       </div>`;
         $('.links').append(mapListId);
