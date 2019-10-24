@@ -29,8 +29,7 @@ $(document).ready(function() {
     addFavoriteMap();
   });
 
-  $('.favorites').click(function() {
-    console.log('clicked');
+  $('.favorites').click(function () {
     toggleListMapClass();
     getFavoriteMaps();
   });
@@ -39,7 +38,7 @@ $(document).ready(function() {
   $(".links").on('click', 'button', function(eventObj) {
     toggleListMapClass();
     repopulateSavedMarkersByMapId(eventObj);
-    map.setZoom(2);
+    map.setZoom(11);
     $('.list-maps').removeClass('visible');
     $('.to-grey').removeClass('grey-screen');
   });

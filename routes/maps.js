@@ -106,14 +106,13 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     let id = req.params.id;
     let query = `
-      SELECT DISTINCT markers.place_id
-      FROM markers
-      JOIN maps ON maps.id = markers.map_id
-      WHERE map_id = ${id}
+      SELECT DISTINCT markers.place_id, maps.title, maps.description 
+      FROM maps
+      LEFT JOIN markers ON map_id = maps.id
+      WHERE maps.id = ${id}
       `;
     db.query(query)
       .then(data => {
-        console.log("data is: ", data);
         console.log('\n SQL SELECT:  place_id --> Success ✅ \n\n', data.rows);
         res.send(data.rows);
       })
