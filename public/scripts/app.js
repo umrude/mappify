@@ -97,7 +97,7 @@ function dynamicHtmlMapList(mapIdArray) {
     <br>
     <div class="list-of-links">
     <h3>${item.title}</h3>
-    <p>${item.description}</p>
+    <p style= "word-wrap: break-word;">${item.description}</p>
     <p>ID: ${item.id}</p>
     <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
     <br><br>
@@ -139,6 +139,18 @@ function getFavoriteMaps() {
     .then((mapIdArray) => {
       console.log('mapIdArray: ', mapIdArray);
       $('.list-maps').children('h2').html('My Favorites')
+      dynamicHtmlMapList(mapIdArray);
+    });
+}
+
+function getContributions() {
+  $.ajax({
+    method: "GET",
+    url: "/maps/contributions"
+  })
+    .then((mapIdArray) => {
+      console.log('mapIdArray: ', mapIdArray);
+      $('.list-maps').children('h2').html('My Contributions');
       dynamicHtmlMapList(mapIdArray);
     });
 }

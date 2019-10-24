@@ -7,7 +7,9 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     let title = req.body.title;
     let desc = req.body.description;
+    let mapId = req.params.mapId;
     let query = `
+
       INSERT INTO maps (user_id, title, description)
       VALUES (${req.session.user_id}, '${title}', '${desc}')
       RETURNING *;
@@ -79,6 +81,24 @@ module.exports = (db) => {
     db.query(query)
       .then(data => {
         console.log('\n SQL SELECT:  favorites --> Success ✅ \n\n', data.rows);
+        res.send(data.rows);
+        // res.send(data)
+      })
+      .catch(err => console.log("ERROR: heeeeeey", err));
+  });
+
+  //get contributions
+  router.get('/contributions', (req, res) => {
+    let userId = req.session.user_id;
+    let query = `
+          SELECT DISTINCT *
+          FROM contributions
+          JOIN maps ON maps.id = map_id
+          WHERE contributions.user_id = ${userId};
+          `;
+    db.query(query)
+      .then(data => {
+        console.log('\n SQL SELECT:  contributions --> Success ✅ \n\n', data.rows);
         res.send(data.rows);
         // res.send(data)
       })

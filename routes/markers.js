@@ -17,10 +17,14 @@ module.exports = (db) => {
       DELETE
       FROM markers
       WHERE map_id = ${mapId};
-      
+
       INSERT INTO markers (map_id, place_id)
       VALUES ${values}
       RETURNING*;
+
+      INSERT INTO contributions (user_id, map_id)
+      VALUES (${req.session.user_id}, ${mapId})
+      RETURNING *;
     `;
 
     db.query(query)
