@@ -25,6 +25,11 @@ function locationsFromDatabase(data, map) {
   });
 }
 
+function resetBounds() {
+  map.setZoom(10);
+  map.setCenter(allPlaces[0].geometry.location);
+}
+
 // JACKSON'S EDITS BELOW
 function findPlaceId() {
   let markersPlaceIds = [];
@@ -211,7 +216,7 @@ function repopulateSavedMarkersByMapId(eventObj) {
 
       console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
       locationsFromDatabase(storedPlaceIds, map);
-      
+
       toggleMapDesc(title, description);
     })
     .catch(err => console.error(err));

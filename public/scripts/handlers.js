@@ -41,7 +41,7 @@ $(document).ready(function() {
     repopulateSavedMarkersByMapId(eventObj);
     $('.list-maps').removeClass('visible');
     $('.to-grey').removeClass('grey-screen');
-    map.setZoom(3);
+    setTimeout(resetBounds, 1000);
   });
 
   $('.show-form').click(function() {
