@@ -6,7 +6,6 @@ let allPlaces = [];
 let storedPlaceIds = [];
 let markers = [];
 let currentMapId;
-// let currentUserId;
 
 //calls placesAPI with place_id and gets object containing relevent data about place
 function locationsFromDatabase(data, map) {
@@ -38,6 +37,15 @@ function findPlaceId() {
   return markersPlaceIds;
 }
 
+function toggleMapDesc(title, description) {
+  $('.map-desc').empty();
+  $('.map-desc').append(`
+  <h3 class='title-overlay'>${title}</h3>
+  <p class='desc-overlay'>${description}</p>
+`);
+  $('.map-desc').removeClass('hide-desc')
+}
+
 function createMap() {
   storedPlaceIds = [];
   allPlaces = [];
@@ -57,7 +65,11 @@ function createMap() {
       $('.title').val("");
       $('.description').val("");
       currentMapId = result.id;
-    }).catch((error) => {
+
+      toggleMapDesc(title, description);
+
+    })
+    .catch((error) => {
       console.log("ERROR CREATING MAP", error);
     });
 }
@@ -88,7 +100,6 @@ function dynamicHtmlMapList(mapIdArray) {
     <div class="list-of-links">
     <h3>${item.title}</h3>
     <p style= "word-wrap: break-word;">${item.description}</p>
-    <p>ID: ${item.id}</p>
     <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
     <br><br>
   </div>`;
@@ -190,12 +201,18 @@ function repopulateSavedMarkersByMapId(eventObj) {
   })
     .then(placeIds => {
       console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
+
       for (const item of placeIds) {
         storedPlaceIds.push(item.place_id);
       }
       currentMapId = mapId;
+      let title = placeIds[0].title;
+      let description = placeIds[0].description;
+
       console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
       locationsFromDatabase(storedPlaceIds, map);
+      
+      toggleMapDesc(title, description);
     })
     .catch(err => console.error(err));
 }

@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/styles/generate-map.css" type="text/css" />
   <link rel="stylesheet" href="/styles/list-links.css" type="text/css" />
   <link rel="stylesheet" href="/styles/form-styles.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/map-title.css" type="text/css" />
   <link rel="stylesheet" href="/styles/loading-icon.css" type="text/css" />
 
   <!-- App JS -->
@@ -79,20 +80,21 @@
     </section>
   </div>
   <div id="map" class="to-grey"></div>
-  <!-- I'm HERE!! -->
 
+  <!-- FORM INPUT -->
   <form class="title-form hidden " method="POST" action="/maps">
     <div class="form-group">
-      <label for="exampleFormControlInput1">Title</label>
+      <label for="exampleFormControlInput1" class='form-header form-title'>Title</label>
       <input type="text" class="title form-control" id="exampleFormControlInput1" placeholder="Enter Title">
     </div>
     <div class="form-group">
-      <label for="exampleFormControlTextarea1">Description</label>
-      <textarea class="description form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <label for="exampleFormControlTextarea1" class='form-header form-desc'>Description</label>
+      <textarea class="description form-control" id="exampleFormControlTextarea1" rows="3" placeholder="..."></textarea>
     </div>
-    <button type="button" class="btn btn-primary create-map-button ">OK</button>
-
+    <button type="button" class="btn btn-primary create-map-button btn-sm">CREATE</button>
   </form>
+  
+  <div class='map-desc hide-desc to-grey'>IM HEREEE</div>
   <div class="loading hide-load spinner-grow" role="status">
     <span>Saving...</span>
   </div>
