@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 $(document).ready(function() {
+  $('.to-grey').addClass('grey-screen');
 
-  // $('.create-map-button').click(createMap);
+
 
   $('.create-map-button').click(function() {
     $('.title-form').addClass('hidden');
@@ -38,9 +39,9 @@ $(document).ready(function() {
   $(".links").on('click', 'button', function(eventObj) {
     toggleListMapClass();
     repopulateSavedMarkersByMapId(eventObj);
-    map.setZoom(11);
     $('.list-maps').removeClass('visible');
     $('.to-grey').removeClass('grey-screen');
+    map.setZoom(3);
   });
 
   $('.show-form').click(function() {
