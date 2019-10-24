@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
 let map;
@@ -12,12 +13,12 @@ function locationsFromDatabase(data, map) {
   //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
   //sets up the request to the API for each entry in data
-  data.forEach(function (id) {
+  data.forEach(function(id) {
     let request = {
       placeId: id
     };
     //makes request to api and pushs response to allPlaces then displays location
-    service.getDetails(request, function (place, status) {
+    service.getDetails(request, function(place, status) {
       allPlaces.push(place);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     });
@@ -87,21 +88,18 @@ function addFavoriteMap() {
 }
 
 function toggleListMapClass() {
-
   $('.list-maps').addClass('visible').addClass('slide');
   $('.to-grey').addClass('grey-screen');
   $('.list-of-links').empty();
 }
 
 function dynamicHtmlMapList(mapIdArray) {
-
   for (let item of mapIdArray) {
     let mapListId = `
     <br>
     <div class="list-of-links">
     <h3>${item.title}</h3>
     <p style= "word-wrap: break-word;">${item.description}</p>
-    <p>ID: ${item.id}</p>
     <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
     <br><br>
   </div>`;
@@ -116,7 +114,7 @@ function getDiscoverMaps() {
     url: "/maps"
   })
     .then((mapIdArray) => {
-      $('.list-maps').children('h2').html('All Maps')
+      $('.list-maps').children('h2').html('All Maps');
       dynamicHtmlMapList(mapIdArray);
     });
 }
@@ -128,7 +126,7 @@ function getUserMaps() {
     url: "/maps/user"
   })
     .then((mapIdArray) => {
-      $('.list-maps').children('h2').html('My Maps')
+      $('.list-maps').children('h2').html('My Maps');
       dynamicHtmlMapList(mapIdArray);
     });
 }
@@ -141,7 +139,7 @@ function getFavoriteMaps() {
   })
     .then((mapIdArray) => {
       console.log('mapIdArray: ', mapIdArray);
-      $('.list-maps').children('h2').html('My Favorites')
+      $('.list-maps').children('h2').html('My Favorites');
       dynamicHtmlMapList(mapIdArray);
     });
 }
@@ -158,9 +156,12 @@ function getContributions() {
     });
 }
 
-
+function loadingSpinner() {
+  $(".loading").toggleClass('hide-load');
+}
 
 function saveMapMarkers() {
+  loadingSpinner();
   const placeIds = findPlaceId();
   $.ajax({
     method: "POST",
@@ -168,6 +169,10 @@ function saveMapMarkers() {
     data: { placeIds: placeIds, mapId: currentMapId }
   })
     .then(res => {
+      setTimeout(() => {
+        loadingSpinner();
+      }, 2000);
+
       console.log("POST:  NEW MARKERS --> Success! ✅", res);
     })
     .catch(err => console.error(err));

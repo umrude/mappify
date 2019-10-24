@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Mappify</title>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
+  <link rel="icon" href="/imgs/favicon.ico">
 
   <!-- App CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,6 +17,7 @@
   <link rel="stylesheet" href="/styles/list-links.css" type="text/css" />
   <link rel="stylesheet" href="/styles/form-styles.css" type="text/css" />
   <link rel="stylesheet" href="/styles/map-title.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/loading-icon.css" type="text/css" />
 
   <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -38,6 +40,23 @@
 
 
     <div class="btn-group navbar-nav ml-auto">
+   <%if (id === "1") { %>
+      <span class="navbar-text login">
+        Logged In As: Jackson
+      </span>
+  <% }else if (id === "2") { %>
+      <span class="navbar-text login">
+        Logged In As: Mel
+      </span>
+  <% }else if (id === "3") { %>
+      <span class="navbar-text login">
+        Logged In As: Gabi
+      </span>
+  <% }else if (id !== "1" || id !== "2" || id !== "3") { %>
+    <span class="navbar-text login">
+      Logged In As: Guest
+    </span>
+  <% } %>
       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         Menu
@@ -55,7 +74,7 @@
   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div class="list-maps">
     <br>
-    <h2 class= 'list-description'>LIST DESCRIPTION GOES HERE</h2>
+    <h2 class='list-description'>LIST DESCRIPTION GOES HERE</h2>
     <section class="links">
 
     </section>
@@ -76,6 +95,10 @@
   </form>
   
   <div class='map-desc hide-desc to-grey'>IM HEREEE</div>
+  <div class="loading hide-load spinner-grow" role="status">
+    <span>Saving...</span>
+  </div>
+
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

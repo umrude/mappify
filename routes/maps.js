@@ -7,7 +7,6 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     let title = req.body.title;
     let desc = req.body.description;
-    let mapId = req.params.mapId;
     let query = `
 
       INSERT INTO maps (user_id, title, description)
@@ -32,6 +31,7 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   });
 
+  //displays all maps made by user
   router.get("/user", (req, res) => {
     let id = req.session.user_id;
     let query = `
@@ -46,9 +46,6 @@ module.exports = (db) => {
       })
       .catch(err => console.log('ERROR: ', err));
   });
-
-
-
 
 
   // saves favorites map
@@ -105,9 +102,7 @@ module.exports = (db) => {
       .catch(err => console.log("ERROR: heeeeeey", err));
   });
 
-
-
-
+  //loads markers
   router.get("/:id", (req, res) => {
     let id = req.params.id;
     let query = `
@@ -123,18 +118,6 @@ module.exports = (db) => {
       })
       .catch(err => console.log(err));
   });
-
-
-
-
-
-
-
-
-
-
-
-
 
   return router;
 };
