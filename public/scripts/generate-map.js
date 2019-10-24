@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable func-style */
 //all styling
@@ -201,12 +202,12 @@ function initAutocomplete(map) {
   let searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener("bounds_changed", function () {
+  map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
-  searchBox.addListener("places_changed", function () {
+  searchBox.addListener("places_changed", function() {
     let places = searchBox.getPlaces();
     if (places.length === 0) {
       return;
@@ -214,7 +215,7 @@ function initAutocomplete(map) {
     let bounds = new google.maps.LatLngBounds();
 
 
-    places.forEach(function (place) {
+    places.forEach(function(place) {
 
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
@@ -242,7 +243,7 @@ function initAutocomplete(map) {
 //checks allPlaces and makes sure current entry doesn't already exist in the array
 function checkLocations(allPlace, currentCheck) {
   let result = false;
-  allPlace.forEach(function (place) {
+  allPlace.forEach(function(place) {
     if (place.place_id === currentCheck[0].place_id) {
       console.log(
         "in array",
@@ -260,7 +261,7 @@ function checkLocations(allPlace, currentCheck) {
 //pass all places in and generates markers and info-windows
 function displayLocations(locations, map) {
   //displays info-window on all locations on click
-  locations.forEach(function (place) {
+  locations.forEach(function(place) {
 
     let placeAddress = place.formatted_address;
     let name = place.name;
@@ -283,14 +284,14 @@ function displayLocations(locations, map) {
     });
     markers.push(marker);
     //event listener for each marker
-    marker.addListener("click", function () {
+    marker.addListener("click", function() {
       infowindow.open(map, marker);
     });
     //gets the remove button and location name from marker
     let removeButton = contentString[0].childNodes[5];
     let locationName = contentString[0].childNodes[1].innerHTML;
     //removes location from display and array
-    removeButton.addEventListener("click", function () {
+    removeButton.addEventListener("click", function() {
       for (let [i, place] of allPlaces.entries()) {
         if (place.name === locationName) {
           allPlaces.splice(i, 1);

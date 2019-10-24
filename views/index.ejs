@@ -37,6 +37,23 @@
 
 
     <div class="btn-group navbar-nav ml-auto">
+   <%if (id === "1") { %>
+      <span class="navbar-text login">
+        Logged In As: Jackson
+      </span>
+  <% }else if (id === "2") { %>
+      <span class="navbar-text login">
+        Logged In As: Mel
+      </span>
+  <% }else if (id === "3") { %>
+      <span class="navbar-text login">
+        Logged In As: Gabi
+      </span>
+  <% }else if (id !== "1" || id !== "2" || id !== "3") { %>
+    <span class="navbar-text login">
+      Logged In As: Guest
+    </span>
+  <% } %>
       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         Menu
