@@ -89,7 +89,7 @@ function dynamicHtmlMapList(mapIdArray) {
     <br>
     <div class="list-of-links">
     <h3>${item.title}</h3>
-    <p>${item.description}</p>
+    <p style= "word-wrap: break-word;">${item.description}</p>
     <p>ID: ${item.id}</p>
     <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
     <br><br>
