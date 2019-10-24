@@ -26,7 +26,10 @@
   "devDependencies": {
     "nodemon": "^1.19.1"
   },
-
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "engines": {
     "node": "^8.9.4"
   }
