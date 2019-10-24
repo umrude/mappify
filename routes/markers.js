@@ -14,6 +14,10 @@ module.exports = (db) => {
     console.log('values: ', values);
 
     let query = `
+      DELETE
+      FROM markers
+      WHERE map_id = ${mapId};
+      
       INSERT INTO markers (map_id, place_id)
       VALUES ${values}
       RETURNING*;
