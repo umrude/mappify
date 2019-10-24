@@ -19,8 +19,7 @@ module.exports = (db) => {
     req.session.user_id = id;
 
     console.log('🍪 COOKIE SESSION ID: ', id);
-    let templateVars = { id: req.session.user_id};
-    res.render('index.ejs', templateVars);
+    res.redirect("/");
   });
 
 
