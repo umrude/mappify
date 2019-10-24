@@ -5,10 +5,6 @@ let allPlaces = [];
 let storedPlaceIds = [];
 let markers = [];
 let currentMapId;
-// DESCRITIVE LEGEND ...
-
-let currentMapTitle;
-let currentMapDescription;
 
 //calls placesAPI with place_id and gets object containing relevent data about place
 function locationsFromDatabase(data, map) {
@@ -40,6 +36,15 @@ function findPlaceId() {
   return markersPlaceIds;
 }
 
+function toggleMapDesc(title, description) {
+  $('.map-desc').empty();
+  $('.map-desc').append(`
+  <h3 class='title-overlay'>${title}</h3>
+  <p class='desc-overlay'>${description}</p>
+`);
+  $('.map-desc').removeClass('hide-desc')
+}
+
 function createMap() {
   storedPlaceIds = [];
   allPlaces = [];
@@ -48,12 +53,6 @@ function createMap() {
   });
   let title = $('.title').val();
   let description = $('.description').val();
-
-  $('.map-desc').append(`
-    <h3>${title}</h3>
-    <p>${description}</p>
-  `)
-
 
   $.ajax({
     method: "POST",
@@ -65,7 +64,11 @@ function createMap() {
       $('.title').val("");
       $('.description').val("");
       currentMapId = result.id;
-    }).catch((error) => {
+
+      toggleMapDesc(title, description);
+
+    })
+    .catch((error) => {
       console.log("ERROR CREATING MAP", error);
     });
 }
@@ -193,12 +196,18 @@ function repopulateSavedMarkersByMapId(eventObj) {
   })
     .then(placeIds => {
       console.log("GET: PLACE IDs --> Success! ✅ \n\n", placeIds);
+
       for (const item of placeIds) {
         storedPlaceIds.push(item.place_id);
       }
       currentMapId = mapId;
+      let title = placeIds[0].title;
+      let description = placeIds[0].description;
+
       console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
       locationsFromDatabase(storedPlaceIds, map);
+      
+      toggleMapDesc(title, description);
     })
     .catch(err => console.error(err));
 }
