@@ -52,7 +52,11 @@
       <span class="navbar-text login">
         Logged In As: Gabi
       </span>
-  <% }else if (id !== "1" || id !== "2" || id !== "3") { %>
+  <% }else if (id === undefined) { %>
+  <span class="navbar-text login">
+    Not logged in
+  </span>
+  <% }else if (id !== "1" || id !== "2" || id !== "3" || id !== undefined) { %>
     <span class="navbar-text login">
       Logged In As: Guest
     </span>
@@ -93,7 +97,7 @@
     </div>
     <button type="button" class="btn btn-primary create-map-button btn-sm">CREATE</button>
   </form>
-  
+
   <div class='map-desc hide-desc to-grey'>IM HEREEE</div>
   <div class="loading hide-load spinner-grow" role="status">
     <span>Saving...</span>
