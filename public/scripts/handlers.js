@@ -56,4 +56,10 @@ $(document).ready(function () {
     $('.list-maps').removeClass('visible');
     $('.to-grey').removeClass('grey-screen');
   });
+
+  $(".contributions").click(function () {
+    console.log("clicked");
+    toggleListMapClass();
+    getContributions();
+  });
 });

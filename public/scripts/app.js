@@ -135,6 +135,18 @@ function getFavoriteMaps() {
     });
 }
 
+function getContributions() {
+  $.ajax({
+    method: "GET",
+    url: "/maps/contributions"
+  })
+    .then((mapIdArray) => {
+      console.log('mapIdArray: ', mapIdArray);
+      $('.list-maps').children('h2').html('My Contributions');
+      dynamicHtmlMapList(mapIdArray);
+    });
+}
+
 
 
 function saveMapMarkers() {
