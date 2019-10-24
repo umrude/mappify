@@ -98,7 +98,7 @@ module.exports = (db) => {
           `;
     db.query(query)
       .then(data => {
-        console.log('\n SQL SELECT:  favorites --> Success ✅ \n\n', data.rows);
+        console.log('\n SQL SELECT:  contributions --> Success ✅ \n\n', data.rows);
         res.send(data.rows);
         // res.send(data)
       })
