@@ -15,12 +15,6 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
-INSERT INTO users (name, email, password) VALUES ('Jackson', 'jackson@stark.ca', 'password');
-INSERT INTO users (name, email, password) VALUES ('Mel', 'mel@currie.ca', 'password');
-INSERT INTO users (name, email, password) VALUES ('Gabi', 'gabi@geollegeu.ca', 'password');
-
-
-
 CREATE TABLE maps (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
