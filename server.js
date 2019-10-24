@@ -78,13 +78,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/", (req, res) => {
-  req.db.query(`
-  INSERT INTO maps (user_id)
-  VALUES (1)
-  `);
-  console.log(res);
-});
+// app.post("/", (req, res) => {
+//   req.db.query(`
+//   INSERT INTO maps (user_id)
+//   VALUES (1)
+//   `);
+//   console.log(res);
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT} 😎`);

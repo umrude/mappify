@@ -9,15 +9,18 @@
   text-align: center;
   padding: 0.5em;
   width: 35%;
+  min-width: 270px;
   border-radius: 0.5em;
   transition: opacity 3s, box-shadow 1.5s;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bolder;
+  font-style: italic;
+  font-family: 'Bungee', 'sans-serif';
   color: black;
 }
 
 .title-form:hover {
-  box-shadow: 5px 5px 5px aqua;
+  box-shadow: 8px 8px 8px aqua;
   opacity: 1;
   transition: opacity 1s, box-shadow 0.5s;
 }
@@ -29,12 +32,17 @@
 }
 
 .create-map-button {
-  width: 30%;
+  width: 33%;
+  min-width: 100px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   background: #5A6268;
   outline: none;
   border: none;
   font-weight: bolder;
   font-size: 20px;
+  font-family: inherit;
+  padding-right: 10px;
 }
 
 .hidden {
@@ -42,3 +50,30 @@
   display: none;
 
 }
+
+.form-header {
+  margin-top: 10px;
+}
+
+/* UNDERLINE HEADER EFFECT */
+
+.form-header:after {
+  content: '';
+  position: absolute;
+  left: 30%;
+  display: inline-block;
+  height: 1em;
+  width: 100%;
+  max-width: 125px;
+  border-bottom: 1px solid;
+  margin-top: 3px;
+  opacity: 0;
+	transition: opacity 0.6s, transform 0.6s;
+  transform: scale(0,1);
+}
+
+.form-header:hover:after {
+  opacity: 1;
+  transform: scale(1.5);
+}  
+

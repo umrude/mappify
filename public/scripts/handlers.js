@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 $(document).ready(function () {
 
-  // $('.create-map-button').click(createMap);
-
   $('.create-map-button').click(function () {
     $('.title-form').addClass('hidden');
     $('.to-grey').removeClass('grey-screen');
@@ -30,7 +28,6 @@ $(document).ready(function () {
   });
 
   $('.favorites').click(function () {
-    console.log('clicked');
     toggleListMapClass();
     getFavoriteMaps();
   });

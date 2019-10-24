@@ -5,7 +5,10 @@ let allPlaces = [];
 let storedPlaceIds = [];
 let markers = [];
 let currentMapId;
-// let currentUserId;
+// DESCRITIVE LEGEND ...
+
+let currentMapTitle;
+let currentMapDescription;
 
 //calls placesAPI with place_id and gets object containing relevent data about place
 function locationsFromDatabase(data, map) {
@@ -45,6 +48,11 @@ function createMap() {
   });
   let title = $('.title').val();
   let description = $('.description').val();
+
+  $('.map-desc').append(`
+    <h3>${title}</h3>
+    <p>${description}</p>
+  `)
 
 
   $.ajax({
