@@ -1,0 +1,21 @@
+/* Loading icon */
+
+.loading{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  top: 48%;
+  left: 48%;
+  height: 15%;
+  width: 10%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  background-color: aquamarine;
+}
+
+.hide-load {
+  visibility: hidden;
+}

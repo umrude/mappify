@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/styles/generate-map.css" type="text/css" />
   <link rel="stylesheet" href="/styles/list-links.css" type="text/css" />
   <link rel="stylesheet" href="/styles/form-styles.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/loading-icon.css" type="text/css" />
 
   <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -54,13 +55,14 @@
   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div class="list-maps">
     <br>
-    <h2 class= 'list-description'>LIST DESCRIPTION GOES HERE</h2>
+    <h2 class='list-description'>LIST DESCRIPTION GOES HERE</h2>
     <section class="links">
 
     </section>
   </div>
   <div id="map" class="to-grey"></div>
   <!-- I'm HERE!! -->
+
   <form class="title-form hidden " method="POST" action="/maps">
     <div class="form-group">
       <label for="exampleFormControlInput1">Title</label>
@@ -73,6 +75,10 @@
     <button type="button" class="btn btn-primary create-map-button ">OK</button>
 
   </form>
+  <div class="loading hide-load spinner-grow" role="status">
+    <span>Saving...</span>
+  </div>
+
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

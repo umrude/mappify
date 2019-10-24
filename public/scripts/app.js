@@ -147,9 +147,12 @@ function getContributions() {
     });
 }
 
-
+function loadingSpinner() {
+  $(".loading").toggleClass('hide-load');
+}
 
 function saveMapMarkers() {
+  loadingSpinner();
   const placeIds = findPlaceId();
   $.ajax({
     method: "POST",
@@ -157,6 +160,10 @@ function saveMapMarkers() {
     data: { placeIds: placeIds, mapId: currentMapId }
   })
     .then(res => {
+      setTimeout(() => {
+        loadingSpinner();
+      }, 2000);
+
       console.log("POST:  NEW MARKERS --> Success! ✅", res);
     })
     .catch(err => console.error(err));
