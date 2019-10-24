@@ -1,26 +1,47 @@
 /* eslint-disable no-undef */
 $(document).ready(function () {
 
-  // getCurrentUserId() 
-
   $('.create-map-button').click(createMap);
 
   // toggles list window when my maps is clicked
   // sends request to DB to dynamically up date the my list map
+  $('.discover').click(function () {
+    toggleListMapClass();
+    getDiscoverMaps();
+  });
+
+  // gets maps for a specific user
   $('.my-maps').click(function () {
-    toggleListMapClass()
-    getUsersMaps()
+    toggleListMapClass();
+    getUserMaps();
   });
 
   // SAVE... MAP'S MARKERS TO DATABASE
   $(".save").click(saveMapMarkers);
 
+  // CLICK favorite button
+  $('.fav-button').click(function() {
+    addFavoriteMap();
+  })
+  
+  $('.favorites').click(function() {
+    console.log('clicked')
+    toggleListMapClass();
+    getFavoriteMaps()
+  })
+
+
   // GET... MY MAPS LIST (RETURNS ARRAY OF PLACE IDS)
   $(".links").on('click', 'button', function (eventObj) {
     toggleListMapClass();
     repopulateSavedMarkersByMapId(eventObj);
+    $('.list-maps').removeClass('visible');
+    $('.to-grey').removeClass('grey-screen');
   });
 
-  $('')
+  $('#map').click(function() {
+    $('.list-maps').removeClass('visible');
+    $('.to-grey').removeClass('grey-screen');
+  })
 });
 

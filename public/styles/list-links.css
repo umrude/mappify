@@ -1,4 +1,4 @@
-.list-my-maps {
+.list-maps {
   position: absolute;
   z-index: 1;
   height: 94%;
@@ -33,4 +33,11 @@ visibility: visible;
 
 .grey-screen {
   -webkit-filter: blur(5px) grayscale(50%);
+}
+
+.list-description {
+  color: red;
+  font-family: 'Bungee', 'sans-serif';
+  font-style: italic; 
+  text-shadow: 3px 3px 0 black;
 }

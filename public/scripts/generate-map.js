@@ -187,7 +187,7 @@ function initMap() {
       lat: 49.2827,
       lng: -123.1207
     },
-    zoom: 10,
+    zoom: 11,
     // mapTypeId: 'roadmap',
     styles: stylesArray
   });

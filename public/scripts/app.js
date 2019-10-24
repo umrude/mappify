@@ -48,40 +48,87 @@ function createMap() {
     url: "/maps"
   })
     .then((result) => {
-      console.log("RESULT FROM CREATE: ", result);
+      console.log("✅ RESULT FROM CREATE: ", result);
       currentMapId = result.id;
     }).catch((error) => {
       console.log("ERROR CREATING MAP", error);
     });
 }
 
+function addFavoriteMap() {
+  favoriteMapId = currentMapId;
+  $.ajax({
+    method: 'POST',
+    url: '/maps/favorites/' + favoriteMapId
+  })
+  .then((result) => {
+    console.log("Successful Map Favorite ✅", result);
+  }).catch((error) => {
+    console.log("ERROR CREATING MAP", error);
+  });
+}
+
 function toggleListMapClass() {
 
-  $('.list-my-maps').toggleClass('visible').toggleClass('slide');
-  $('.to-grey').toggleClass('grey-screen');
+  $('.list-maps').addClass('visible').addClass('slide');
+  $('.to-grey').addClass('grey-screen');
   $('.list-of-links').empty();
 }
 
-function getUsersMaps() {
+function dynamicHtmlMapList(mapIdArray) {
+
+  for (let item of mapIdArray) {
+    let mapListId = `
+    <br>
+    <div class="list-of-links">
+    <h3>Title: ${item.title}</h3>
+    <p>Description: ${item.description}</p>
+    <p>ID: ${item.id}</p>
+    <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
+    <br><br>
+  </div>`;
+    $('.links').prepend(mapListId);
+  }
+}
+
+// GET DISCOVER MAPS
+function getDiscoverMaps() {
   $.ajax({
     method: "GET",
     url: "/maps"
   })
-    .then((idArray) => {
-
-      for (let item of idArray) {
-        let mapListId = `
-        <div class="list-of-links">
-        <p>${item.id}</p>
-        <h1>Title${item.title}</h1>
-        <p>${item.description}Description</p>
-        <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
-      </div>`;
-        $('.links').append(mapListId);
-
-      }
+    .then((mapIdArray) => {
+      $('.list-maps').children('h2').html('All Maps')
+      dynamicHtmlMapList(mapIdArray);
     });
 }
+
+//  GET USER MAPS
+function getUserMaps() {
+  $.ajax({
+    method: "GET",
+    url: "/maps/user"
+  })
+    .then((mapIdArray) => {
+      $('.list-maps').children('h2').html('My Maps')
+      dynamicHtmlMapList(mapIdArray);
+    });
+}
+
+// GET FAVORITE MAPS
+function getFavoriteMaps() {
+  $.ajax({
+    method: "GET",
+    url: "/maps/favorites"
+  })
+    .then((mapIdArray) => {
+      console.log('mapIdArray: ', mapIdArray);
+      $('.list-maps').children('h2').html('My Favorites')
+      dynamicHtmlMapList(mapIdArray);
+    });
+}
+
+
 
 function saveMapMarkers() {
   const placeIds = findPlaceId();
