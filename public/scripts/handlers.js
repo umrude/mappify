@@ -39,6 +39,7 @@ $(document).ready(function() {
   $(".links").on('click', 'button', function(eventObj) {
     toggleListMapClass();
     repopulateSavedMarkersByMapId(eventObj);
+    map.setZoom(11);
     $('.list-maps').removeClass('visible');
     $('.to-grey').removeClass('grey-screen');
   });
