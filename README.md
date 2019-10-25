@@ -29,9 +29,9 @@ Mapplication is a single-page map based web application. It allows users to crea
 - CSS
 
 ## Final Product
-- !["screenshot 1"](#)
-- !["screenshot 2"](#)
-- !["screenshot 3"](#)
+ !["Intuitive interface to start creating custom maps"](public/docs/create-map.png)
+  !["Place markers on custom locations!"](public/docs/map-markers.png)
+  !["Access your maps later or discover other users maps!"](public/docs/my-maps.png)
 
 
 
