@@ -230,6 +230,7 @@ function repopulateSavedMarkersByMapId(eventObj) {
       locationsFromDatabase(storedPlaceIds, map);
 
       toggleMapDesc(title, description);
+      setTimeout(resetBounds, 1200);
     })
     .catch(err => console.error(err));
 }
