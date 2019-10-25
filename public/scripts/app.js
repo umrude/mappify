@@ -13,12 +13,12 @@ function locationsFromDatabase(data, map) {
   //calls the PlacesService API
   let service = new google.maps.places.PlacesService(map);
   //sets up the request to the API for each entry in data
-  data.forEach(function(id) {
+  data.forEach(function (id) {
     let request = {
       placeId: id
     };
     //makes request to api and pushs response to allPlaces then displays location
-    service.getDetails(request, function(place, status) {
+    service.getDetails(request, function (place, status) {
       allPlaces.push(place);
       displayLocations([allPlaces[allPlaces.length - 1]], map);
     });
@@ -31,7 +31,8 @@ function resetBounds() {
   map.setCenter(allPlaces[0].geometry.location);
 }
 
-// JACKSON'S EDITS BELOW
+
+//retrieves location id's from the database to repopulate saved maps
 function findPlaceId() {
   let markersPlaceIds = [];
   for (const place of allPlaces) {
@@ -52,6 +53,7 @@ function toggleMapDesc(title, description) {
   $('.map-desc').removeClass('hide-desc')
 }
 
+//clears current markers on map and creates a new map in the DB
 function createMap() {
   storedPlaceIds = [];
   allPlaces = [];
@@ -80,6 +82,7 @@ function createMap() {
     });
 }
 
+//route to send current map id to favourites table in the DB
 function addFavoriteMap() {
   favoriteMapId = currentMapId;
   $.ajax({
@@ -93,12 +96,14 @@ function addFavoriteMap() {
     });
 }
 
+//toggles visibility of map list aside
 function toggleListMapClass() {
   $('.list-maps').addClass('visible').addClass('slide');
   $('.to-grey').addClass('grey-screen');
   $('.links').empty();
 }
 
+//updates map lists dynamically when user creates new maps or favourites etc.
 function dynamicHtmlMapList(mapIdArray) {
   for (let item of mapIdArray) {
     let mapListId = `
@@ -165,10 +170,12 @@ function getContributions() {
     });
 }
 
+//toggles the loading spinner when user clicks save
 function loadingSpinner() {
   $(".loading").toggleClass('hide-load');
 }
 
+//saves locations to database
 function saveMapMarkers() {
   loadingSpinner();
   const placeIds = findPlaceId();
