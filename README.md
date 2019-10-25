@@ -10,7 +10,7 @@
   - [Contributions](#contributions)
 
 ## Description
-Mapplication is a single-page map based web application. It allows users to create thier own custom maps or create maps collaboritivly by contributing to maps other users have made. Users have the ability to browse and view public maps made by ther users as well as store them as 'favourites'.
+Mapplication is a single-page map based web application. It allows users to create thier own custom maps, or create maps collaboritivly by contributing to maps other users have made. Users have the ability to browse and view public maps made by other users as well as store them as 'favourites'.
 
 ## Stack
 ### Back-End
@@ -43,8 +43,8 @@ or to run project locally ...
 1. Clone this repository.
 2. Install dependencies using the `npm install` command.
 
-3. Connect to `psql` in the terminal and create tables by running command  `\i db/schema/midterm.sql` 
-      - [postgres docs](https://www.postgresql.org/docs/)
+3. Connect to `psql` in the terminal and create tables by running command `\i db/schema/midterm.sql` 
+      - Not sure how to set up a database ?  See, [postgres docs](https://www.postgresql.org/docs/)
    
 4. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
 
