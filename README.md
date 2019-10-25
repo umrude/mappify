@@ -44,7 +44,7 @@ or to run project locally ...
 1. Clone this repository.
 2. Install dependencies using the `npm install` command.
 
-3. Connect to `psql` in the terminal and create tables by running command `\i db/schema/midterm.sql` 
+3. Connect to `psql` in the terminal and create tables by running command `\i db/schema/midterm.sql`  and create test users by running `\i db/seeds/01_users.sql`
       - Not sure how to set up a database ?  See, [postgres docs](https://www.postgresql.org/docs/)
    
 4. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
