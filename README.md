@@ -63,3 +63,8 @@ or to run project locally ...
     pg-native: ^3.0.0
 
 ## Contributions
+  This app was created by...
+
+- https://github.com/umrude
+- https://github.com/curriecode
+- https://github.com/JacksonStark
