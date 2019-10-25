@@ -197,6 +197,7 @@ function getNewlySelectedMapId(eventObj) {
 // eventObj is an optional parameter that can be passed to the
 // event listeners callback function. It contains information about
 // the element and the context of which the listener was called.
+
 function repopulateSavedMarkersByMapId(eventObj) {
   storedPlaceIds = [];
   allPlaces = [];
