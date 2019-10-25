@@ -14,13 +14,14 @@ Mapplication is a single-page map based web application. It allows users to crea
 
 ## Stack
 ### Back-End
-- Node js
+- Node.js
 - Express
 - Cookie Sessions
 - Postgres SQL
 
 ### Front-End
-- Google Maps API
+- Google Maps JS API
+- Google Maps Places API
 - Javascript
 - jQuery
 - AJAX
@@ -36,7 +37,7 @@ Mapplication is a single-page map based web application. It allows users to crea
 
 
 ## Getting Started
-Simply click [here](https://mappifyy.herokuapp.com/login/2)
+Simply click [here](https://mappifyy.herokuapp.com/login/4)
 
 or to run project locally ...
 

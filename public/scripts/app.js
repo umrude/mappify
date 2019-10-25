@@ -25,6 +25,12 @@ function locationsFromDatabase(data, map) {
   });
 }
 
+// FOCUS ON CURRENT MAP ON LOAD...
+function resetBounds() {
+  map.setZoom(10);
+  map.setCenter(allPlaces[0].geometry.location);
+}
+
 // JACKSON'S EDITS BELOW
 function findPlaceId() {
   let markersPlaceIds = [];
@@ -98,11 +104,14 @@ function dynamicHtmlMapList(mapIdArray) {
     let mapListId = `
     <br>
     <div class="list-of-links">
-    <h3>${item.title}</h3>
-    <p style= "word-wrap: break-word;">${item.description}</p>
+    <h3 class='list-map-card-title'>${item.title}</h3>
+    <p style="word-wrap: break-word;">${item.description}</p>
     <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
     <br><br>
-  </div>`;
+
+    ${item.name ? `<p>Created By: ${item.name}</p>` : ''}
+
+    </div>`;
     $('.links').prepend(mapListId);
   }
 }
@@ -211,7 +220,7 @@ function repopulateSavedMarkersByMapId(eventObj) {
 
       console.log('ARRAY: PLACE IDs --> Success! ✅ \n\n', storedPlaceIds);
       locationsFromDatabase(storedPlaceIds, map);
-      
+
       toggleMapDesc(title, description);
     })
     .catch(err => console.error(err));

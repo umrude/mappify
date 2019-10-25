@@ -1,6 +1,13 @@
 /* eslint-disable no-undef */
 $(document).ready(function() {
-  $('.to-grey').addClass('grey-screen');
+
+  
+  $('.map-desc').empty();
+  $('.map-desc').append(`
+  <h3 class='title-overlay'>Click Create Map</h3>
+  <p class='desc-overlay'>Or View Maps In Menu</p>
+`);
+  $('.map-desc').removeClass('hide-desc')
 
 
 
@@ -41,7 +48,7 @@ $(document).ready(function() {
     repopulateSavedMarkersByMapId(eventObj);
     $('.list-maps').removeClass('visible');
     $('.to-grey').removeClass('grey-screen');
-    map.setZoom(3);
+    setTimeout(resetBounds, 1000);
   });
 
   $('.show-form').click(function() {
