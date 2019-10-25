@@ -108,7 +108,10 @@ function dynamicHtmlMapList(mapIdArray) {
     <p style="word-wrap: break-word;">${item.description}</p>
     <button type="button" data-map-id="${item.id}" class="load-map btn btn-primary">Load Map</button>
     <br><br>
-  </div>`;
+
+    ${item.name ? `<p>Created By: ${item.name}</p>` : ''}
+
+    </div>`;
     $('.links').prepend(mapListId);
   }
 }

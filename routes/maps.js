@@ -23,7 +23,13 @@ module.exports = (db) => {
 
   // gets info from database about maps and passes to the front-end to store in maps lists
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM maps;`)
+    let query = `
+    SELECT * 
+    FROM maps
+    JOIN users ON users.id = maps.user_id
+    `
+
+    db.query(query)
       .then(data => {
         console.log('\n SQL SELECT:  discover_maps --> Success ✅ \n\n', data.rows);
         res.send(data.rows);
