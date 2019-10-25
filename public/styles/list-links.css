@@ -48,3 +48,8 @@ visibility: visible;
   padding: 15px 0;
   margin: 0 20%;
 }
+
+.list-map-card-title {
+  font-family: 'Bungee', 'sans-serif';
+  font-size: 26px;
+}
