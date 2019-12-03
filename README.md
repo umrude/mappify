@@ -1,4 +1,4 @@
-# Mapplication Project
+# Mappify Project
 
 ## Table Of Contents
 
@@ -10,7 +10,7 @@
   - [Contributions](#contributions)
 
 ## Description
-Mapplication is a single-page map based web application. It allows users to create thier own custom maps, or create maps collaboritivly by contributing to maps other users have made. Users have the ability to browse and view public maps made by other users as well as store them as 'favourites'.
+Mappify is a single-page map based web application. It allows users to create thier own custom maps, or create maps collaboritivly by contributing to maps other users have made. Users have the ability to browse and view public maps made by other users as well as store them as 'favourites'.
 
 ## Stack
 ### Back-End
